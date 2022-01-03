@@ -15,7 +15,7 @@ export default function Searchbar({
 				onChange={(event) => setQuery(event.target.value || '')}
 			/>
 			<button
-				className='bg-red-300 ml-5 px-2 py-1 absolute top-[0.125rem] right-[10.5%]'
+				className='bg-red-300 ml-5 px-2 py-1 absolute top-[0.125rem] right-[10.2%]'
 				disabled={isLoading || !query}
 				type='submit'>
 				Search

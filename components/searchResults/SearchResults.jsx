@@ -1,11 +1,17 @@
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
 export default function ({ movies, IMAGE_BASE_URL, query }) {
+	const [result, setResults] = useState('')
+
+	useEffect(() => {
+		setResults(query)
+	}, [movies])
 	return (
 		<>
-			{query ? (
-				<h2 className='text-3xl mb-10'>
-					Results for <span className='text-bold uppercase'> {query}</span>
+			{result ? (
+				<h2 className='text-3xl my-10'>
+					Results for <span className='text-bold uppercase'> {result}</span>
 				</h2>
 			) : (
 				''
@@ -22,7 +28,9 @@ export default function ({ movies, IMAGE_BASE_URL, query }) {
 												? IMAGE_BASE_URL + movie.poster_path
 												: movie.backdrop_path
 												? IMAGE_BASE_URL + movie.backdrop_path
-												: IMAGE_BASE_URL + movie.profile_path
+												: movie.profile_path
+												? IMAGE_BASE_URL + movie.profile_path
+												: '/images/no_img.png'
 										}
 										objectFit='fill'
 										alt=''
@@ -49,7 +57,7 @@ export default function ({ movies, IMAGE_BASE_URL, query }) {
 													? 'absolute rounded-md p-1 bg-yellow-400 top-2 right-2'
 													: 'absolute rounded-md p-1 bg-green-400 top-2 right-2'
 											}>
-											<span className='inline-block'>{'⬆️'} </span>
+											<span className='inline-block'>{'📈'} </span>
 											{Math.round(movie.popularity)}
 										</div>
 									)}
