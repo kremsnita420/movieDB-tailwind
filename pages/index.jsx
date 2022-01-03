@@ -57,8 +57,8 @@ export default function Home({ trending, trending2 }) {
 	}
 
 	return (
-		<Layout>
-			<div className='flex items-center justify-center h-60 w-full bg-blue-300 my-10 '>
+		<>
+			<div className='flex items-center justify-center h-60 w-full bg-blue-300'>
 				<Searchbar
 					isLoading={isLoading}
 					query={query}
@@ -67,26 +67,28 @@ export default function Home({ trending, trending2 }) {
 					value={query}
 				/>
 			</div>
-			<SearchResults
-				query={query}
-				movies={movies}
-				IMAGE_BASE_URL={IMAGE_BASE_URL}
-			/>
+			<Layout>
+				<SearchResults
+					query={query}
+					movies={movies}
+					IMAGE_BASE_URL={IMAGE_BASE_URL}
+				/>
 
-			<PrevAndNextBtn
-				query={query}
-				initialPage={initialPage}
-				totalPages={totalPages}
-				setInitialPage={setInitialPage}
-			/>
+				<PrevAndNextBtn
+					query={query}
+					initialPage={initialPage}
+					totalPages={totalPages}
+					setInitialPage={setInitialPage}
+				/>
 
-			<h2 className='text-3xl my-10'>Currently Popular</h2>
+				<h2 className='text-3xl my-10'>Currently Popular</h2>
 
-			<TrendingResults
-				trendingAll={trendingAll}
-				IMAGE_BASE_URL={IMAGE_BASE_URL}
-			/>
-		</Layout>
+				<TrendingResults
+					trendingAll={trendingAll}
+					IMAGE_BASE_URL={IMAGE_BASE_URL}
+				/>
+			</Layout>
+		</>
 	)
 }
 
