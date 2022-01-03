@@ -46,7 +46,7 @@ export default function Home({ trending, trending2 }) {
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			searchMulti()
-		}, 500)
+		}, 700)
 
 		return () => clearTimeout(timer)
 	}, [query, initialPage, data])
