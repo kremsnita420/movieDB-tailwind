@@ -17,10 +17,10 @@ export default function TrendingResults({ trendingAll, IMAGE_BASE_URL }) {
 							<div
 								className={
 									trend.vote_average < 5
-										? 'absolute rounded-md p-1 bg-red-400 top-5 right-5'
+										? 'absolute rounded-md p-1 bg-red-400 bottom-3 right-2'
 										: trend.vote_average > 5 && trend.vote_average < 7
-										? 'absolute rounded-md p-1 bg-yellow-400 top-2 right-2'
-										: 'absolute rounded-md p-1 bg-green-400 top-2 right-2'
+										? 'absolute rounded-md p-1 bg-yellow-400 bottom-3 right-2'
+										: 'absolute rounded-md p-1 bg-green-400 bottom-3 right-2'
 								}>
 								{trend.vote_average * 10 + `%`}
 							</div>

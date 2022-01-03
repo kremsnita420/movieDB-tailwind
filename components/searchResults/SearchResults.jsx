@@ -41,10 +41,10 @@ export default function ({ movies, IMAGE_BASE_URL, query }) {
 										<div
 											className={
 												movie.vote_average < 5
-													? 'absolute rounded-md p-1 bg-red-400 top-2 right-2'
+													? 'absolute rounded-md p-1 bg-red-400 bottom-3 right-2'
 													: movie.vote_average > 5 && movie.vote_average < 7
-													? 'absolute rounded-md p-1 bg-yellow-400 top-2 right-2'
-													: 'absolute rounded-md p-1 bg-green-400 top-2 right-2'
+													? 'absolute rounded-md p-1 bg-yellow-400 bottom-3 right-2'
+													: 'absolute rounded-md p-1 bg-green-400 bottom-3 right-2'
 											}>
 											{`⭐` + movie.vote_average * 10}
 										</div>
@@ -52,10 +52,10 @@ export default function ({ movies, IMAGE_BASE_URL, query }) {
 										<div
 											className={
 												movie.popularity < 5
-													? 'absolute rounded-md p-1 bg-red-400 top-2 right-2'
+													? 'absolute rounded-md p-1 bg-red-400 bottom-3 right-2'
 													: movie.popularity > 5 && movie.popularity < 7
-													? 'absolute rounded-md p-1 bg-yellow-400 top-2 right-2'
-													: 'absolute rounded-md p-1 bg-green-400 top-2 right-2'
+													? 'absolute rounded-md p-1 bg-yellow-400 bottom-3 right-2'
+													: 'absolute rounded-md p-1 bg-green-400 bottom-3 right-2'
 											}>
 											<span className='inline-block'>{'📈'} </span>
 											{Math.round(movie.popularity)}
