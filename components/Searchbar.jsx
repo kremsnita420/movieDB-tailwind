@@ -5,9 +5,11 @@ export default function Searchbar({
 	setQuery,
 }) {
 	return (
-		<form className='my-5 w-full relative' onSubmit={handleSubmit}>
+		<form
+			className='flex flex-col justify-center items-center w-full absolute top-[50%] left-[0]'
+			onSubmit={handleSubmit}>
 			<input
-				className='flex flex-col m-auto text-sm p-2 w-[80%]'
+				className='text-sm p-2 w-2/3'
 				value={query}
 				placeholder='Search movies, shows, people...'
 				name='query'
@@ -15,7 +17,7 @@ export default function Searchbar({
 				onChange={(event) => setQuery(event.target.value || '')}
 			/>
 			<button
-				className='bg-red-300 ml-5 px-2 py-1 absolute top-[0.125rem] right-[10.2%]'
+				className='bg-red-300 ml-5 mt-5 px-2 py-1'
 				disabled={isLoading || !query}
 				type='submit'>
 				Search
