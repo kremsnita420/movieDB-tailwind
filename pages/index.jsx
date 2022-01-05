@@ -12,7 +12,7 @@ export default function Home({ trending }) {
 	let data
 
 	const [isLoading, setIsLoading] = useState(false)
-	const [initialPage, setInitialPage] = useState(1)
+	const [initialPage, setInitialPage] = useState()
 	const [totalPages, setTotalPages] = useState()
 
 	const [query, setQuery] = useState('')
@@ -24,8 +24,6 @@ export default function Home({ trending }) {
 	const heroImagePath = trending[0].backdrop_path
 	const heroImage = HERO_BASE_URL + heroImagePath
 
-	console.log(movies)
-
 	const handleSubmit = (event) => {
 		event.preventDefault()
 		searchMulti()
@@ -35,6 +33,7 @@ export default function Home({ trending }) {
 
 	const searchMulti = async () => {
 		if (!query) {
+			setInitialPage(1)
 			return
 		}
 		setIsLoading(true)
@@ -59,7 +58,11 @@ export default function Home({ trending }) {
 	}, [query, initialPage])
 
 	useEffect(() => {
-		if (sessionStorage.getItem('searchQuery')) {
+		if (
+			sessionStorage.getItem('searchResult') ||
+			sessionStorage.getItem('initialPage') ||
+			sessionStorage.getItem('searchQuery')
+		) {
 			setMovies(JSON.parse(sessionStorage.getItem('searchResult')))
 			setQuery(JSON.parse(sessionStorage.getItem('searchQuery')))
 			setInitialPage(JSON.parse(sessionStorage.getItem('initialPage')))
@@ -74,7 +77,7 @@ export default function Home({ trending }) {
 		sessionStorage.setItem('searchResult', JSON.stringify(movies))
 		sessionStorage.setItem('searchQuery', JSON.stringify(query))
 		sessionStorage.setItem('initialPage', JSON.stringify(initialPage))
-	}, [movies, query])
+	}, [movies, query, initialPage])
 
 	return (
 		<>

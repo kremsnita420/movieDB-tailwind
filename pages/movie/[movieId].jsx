@@ -1,8 +1,13 @@
+import NextImage from 'next/image'
+import Layout from '../../components/layout/Layout'
+
 export default function MoviePage({ movie }) {
 	return (
-		<div>
-			<h1>{movie.title ? movie.title : movie.name}</h1>
-		</div>
+		<>
+			<Layout>
+				<h1>{movie.title}</h1>
+			</Layout>
+		</>
 	)
 }
 
