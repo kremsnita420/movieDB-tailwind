@@ -1,14 +1,12 @@
 import Image from 'next/image'
 import NextLink from 'next/link'
-import dynamic from 'next/dynamic'
-import { useEffect, useState } from 'react'
 
-function SearchResults({ movies, IMAGE_BASE_URL, result }) {
+export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 	return (
 		<>
-			{result ? (
+			{query ? (
 				<h2 className='text-3xl my-5'>
-					Results for <span className='text-bold uppercase'> {result}</span>
+					Results for <span className='text-bold uppercase'> {query}</span>
 				</h2>
 			) : (
 				''
@@ -92,6 +90,3 @@ function SearchResults({ movies, IMAGE_BASE_URL, result }) {
 		</>
 	)
 }
-
-// MAKE RENDER ONLY ON CLIENTSIDE
-export default dynamic(() => Promise.resolve(SearchResults), { ssr: false })

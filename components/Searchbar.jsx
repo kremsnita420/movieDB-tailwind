@@ -6,7 +6,7 @@ export default function Searchbar({
 }) {
 	return (
 		<form
-			className='flex flex-col justify-center items-center w-full absolute top-[50%] left-[0]'
+			className='flex flex-col justify-center items-center w-full absolute top-[25%] left-[0]'
 			onSubmit={handleSubmit}>
 			<input
 				className='text-sm p-2 w-2/3'
@@ -18,7 +18,7 @@ export default function Searchbar({
 			/>
 			<button
 				className='bg-red-300 ml-5 mt-5 px-2 py-1'
-				disabled={isLoading || !query}
+				disabled={isLoading || !query || ''}
 				type='submit'>
 				Search
 			</button>

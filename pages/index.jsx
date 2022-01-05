@@ -8,9 +8,8 @@ import SearchResults from '../components/searchResults/SearchResults'
 import TrendingResults from '../components/TrendingResults/TrendingResults'
 import { useRouter } from 'next/router'
 
-export default function Home({ trending, trending2 }) {
+export default function Home({ trending }) {
 	let data
-	let storageQuery
 
 	const [isLoading, setIsLoading] = useState(false)
 	const [initialPage, setInitialPage] = useState(1)
@@ -25,7 +24,6 @@ export default function Home({ trending, trending2 }) {
 	const heroImagePath = trending[0].backdrop_path
 	const heroImage = HERO_BASE_URL + heroImagePath
 
-	const router = useRouter()
 	console.log(movies)
 
 	const handleSubmit = (event) => {
@@ -41,9 +39,7 @@ export default function Home({ trending, trending2 }) {
 		}
 		setIsLoading(true)
 		const res = await fetch(
-			`https://api.themoviedb.org/3/search/multi?api_key=6f1ded32feffe837e07e801efb60a6c6&language=en-US&page=${initialPage}&include_adult=false&query=${
-				query || ''
-			}&include_image_language=en,null`
+			`https://api.themoviedb.org/3/search/multi?api_key=6f1ded32feffe837e07e801efb60a6c6&language=en-US&page=${initialPage}&include_adult=false&query=${query}&include_image_language=en,null`
 		)
 		data = await res.json()
 
@@ -63,16 +59,22 @@ export default function Home({ trending, trending2 }) {
 	}, [query, initialPage])
 
 	useEffect(() => {
-		if (sessionStorage.getItem('state')) {
-			setMovies(JSON.parse(sessionStorage.getItem('state')))
+		if (sessionStorage.getItem('searchQuery')) {
+			setMovies(JSON.parse(sessionStorage.getItem('searchResult')))
+			setQuery(JSON.parse(sessionStorage.getItem('searchQuery')))
+			setInitialPage(JSON.parse(sessionStorage.getItem('initialPage')))
 		} else {
-			sessionStorage.setItem('state', JSON.stringify(movies))
+			sessionStorage.setItem('searchResult', JSON.stringify(movies))
+			sessionStorage.setItem('searchQuery', JSON.stringify(query))
+			sessionStorage.setItem('initialPage', JSON.stringify(initialPage))
 		}
 	}, [])
 
 	useEffect(() => {
-		sessionStorage.setItem('state', JSON.stringify(movies))
-	}, [movies])
+		sessionStorage.setItem('searchResult', JSON.stringify(movies))
+		sessionStorage.setItem('searchQuery', JSON.stringify(query))
+		sessionStorage.setItem('initialPage', JSON.stringify(initialPage))
+	}, [movies, query])
 
 	return (
 		<>
@@ -81,7 +83,7 @@ export default function Home({ trending, trending2 }) {
 					<NextImage
 						src={heroImage}
 						width={1500}
-						height={700}
+						height={500}
 						layout='responsive'
 						objectFit='cover'
 						placeholder='blur'
