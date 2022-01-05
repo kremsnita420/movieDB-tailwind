@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import NextLink from 'next/link'
 
-export default function TrendingResults({ trendingAll, IMAGE_BASE_URL }) {
+export default function TrendingResults({ trending, IMAGE_BASE_URL }) {
 	return (
 		<div className='flex w-full h-full py-2 my-5 overflow-x-scroll overscroll-contain'>
-			{trendingAll.map((trend) => (
+			{trending.map((trend) => (
 				<div
 					className='flex flex-col mr-2 bg-gray-200 cursor-pointer'
 					key={trend.id}>

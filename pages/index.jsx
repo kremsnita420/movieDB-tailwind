@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 
 export default function Home({ trending, trending2 }) {
 	let data
+	let storageQuery
 
 	const [isLoading, setIsLoading] = useState(false)
 	const [initialPage, setInitialPage] = useState(1)
@@ -18,12 +19,10 @@ export default function Home({ trending, trending2 }) {
 	const [query, setQuery] = useState('')
 	const [movies, setMovies] = useState([])
 
-	const trendingAll = trending
-
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w300'
 	const HERO_BASE_URL = 'https://image.tmdb.org/t/p/w1280'
 
-	const heroImagePath = trendingAll[0].backdrop_path
+	const heroImagePath = trending[0].backdrop_path
 	const heroImage = HERO_BASE_URL + heroImagePath
 
 	const router = useRouter()
@@ -35,7 +34,7 @@ export default function Home({ trending, trending2 }) {
 	}
 
 	// search for the movies, shows, actors...
-	let storageQuery
+
 	const searchMulti = async () => {
 		if (!query) {
 			return
@@ -48,25 +47,12 @@ export default function Home({ trending, trending2 }) {
 		)
 		data = await res.json()
 
-		//save search query to sesion storage
-		sessionStorage.setItem('searchQuery', JSON.stringify(data.results)) || ''
-		const arrayFromStorage = sessionStorage.getItem('searchQuery')
-		storageQuery = JSON.parse(arrayFromStorage)
+		setMovies(data.results)
 
-		//save total pages to sesion storage
-		sessionStorage.setItem(
-			'totalPagesQuery',
-			JSON.stringify(data.total_pages)
-		) || ''
-		const totalPagesFromStorage = sessionStorage.getItem('totalPagesQuery')
-		const totalPagesQuery = JSON.parse(totalPagesFromStorage)
+		setTotalPages(data.total_pages)
 
-		setMovies(storageQuery)
-
-		setTotalPages(totalPagesQuery)
 		setIsLoading(false)
 	}
-	console.log(storageQuery)
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -75,6 +61,18 @@ export default function Home({ trending, trending2 }) {
 
 		return () => clearTimeout(timer)
 	}, [query, initialPage])
+
+	useEffect(() => {
+		if (sessionStorage.getItem('state')) {
+			setMovies(JSON.parse(sessionStorage.getItem('state')))
+		} else {
+			sessionStorage.setItem('state', JSON.stringify(movies))
+		}
+	}, [])
+
+	useEffect(() => {
+		sessionStorage.setItem('state', JSON.stringify(movies))
+	}, [movies])
 
 	return (
 		<>
@@ -119,10 +117,7 @@ export default function Home({ trending, trending2 }) {
 
 				<h2 className='text-3xl my-10'>Currently Popular</h2>
 
-				<TrendingResults
-					trendingAll={trendingAll}
-					IMAGE_BASE_URL={IMAGE_BASE_URL}
-				/>
+				<TrendingResults trending={trending} IMAGE_BASE_URL={IMAGE_BASE_URL} />
 			</Layout>
 		</>
 	)

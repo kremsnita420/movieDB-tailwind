@@ -1,17 +1,13 @@
 import Image from 'next/image'
 import NextLink from 'next/link'
+import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 
-export default function ({ movies, IMAGE_BASE_URL, query }) {
-	const [result, setResults] = useState('')
-
-	useEffect(() => {
-		setResults(query)
-	}, [movies])
+function SearchResults({ movies, IMAGE_BASE_URL, result }) {
 	return (
 		<>
 			{result ? (
-				<h2 className='text-3xl my-10'>
+				<h2 className='text-3xl my-5'>
 					Results for <span className='text-bold uppercase'> {result}</span>
 				</h2>
 			) : (
@@ -64,7 +60,7 @@ export default function ({ movies, IMAGE_BASE_URL, query }) {
 													}>
 													{`⭐` + movie.vote_average * 10}
 												</div>
-											) : movie.vote_count === 0 ? (
+											) : movie.vote_count || movie.vote_average === 0 ? (
 												<div className='absolute rounded-md p-1 bg-red-400 bottom-3 right-2'>
 													<p>No score</p>
 												</div>
@@ -96,3 +92,6 @@ export default function ({ movies, IMAGE_BASE_URL, query }) {
 		</>
 	)
 }
+
+// MAKE RENDER ONLY ON CLIENTSIDE
+export default dynamic(() => Promise.resolve(SearchResults), { ssr: false })
