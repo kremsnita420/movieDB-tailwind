@@ -114,6 +114,7 @@ export default function Home({ trending }) {
 				/>
 
 				<PrevAndNextBtn
+					movies={movies}
 					query={query}
 					initialPage={initialPage}
 					totalPages={totalPages}

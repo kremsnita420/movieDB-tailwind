@@ -3,10 +3,11 @@ export default function PrevAndNextBtn({
 	initialPage,
 	totalPages,
 	setInitialPage,
+	movies,
 }) {
 	return (
 		<>
-			{query && (
+			{movies.length > 0 ? (
 				<>
 					<div className='flex my-10'>
 						{initialPage === 1 ? (
@@ -44,6 +45,8 @@ export default function PrevAndNextBtn({
 						)}
 					</div>
 				</>
+			) : (
+				''
 			)}
 		</>
 	)
