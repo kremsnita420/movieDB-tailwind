@@ -16,7 +16,7 @@ export default function Layout({ title, description, children }) {
 				/>
 			</Head>
 			<Header />
-			<main className='container flex flex-col items-start justify-start mx-auto min-h-screen'>
+			<main className='container flex flex-col items-center justify-start mx-auto min-h-screen'>
 				{children}
 			</main>
 		</div>

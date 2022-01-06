@@ -21,7 +21,7 @@ export default function MovieHeader({ movie }) {
 					</p>
 
 					{/* production countries */}
-					<div className='flex border-2 rounded-lg m-1 ml-0 px-1'>
+					<div className='flex flex-wrap border-2 rounded-lg m-1 ml-0 px-1'>
 						{movie.production_countries.map((country) => (
 							<p key={country.name} className='pr-3'>
 								{country.name}

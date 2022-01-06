@@ -9,7 +9,7 @@ export default function PrevAndNextBtn({
 		<>
 			{query.length > 3 ? (
 				<>
-					<div className='flex my-10'>
+					<div className='flex py-10 mx-auto'>
 						{initialPage > 1 ? (
 							<button
 								className='bg-red-400 py-1 px-2 mr-5'
