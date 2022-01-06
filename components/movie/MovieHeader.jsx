@@ -9,19 +9,19 @@ export default function MovieHeader({ movie }) {
 			<div className='flex flex-col justify-start items-start w-full'>
 				<h1 className='text-4xl font-semibold'>{movie.title}</h1>
 				<div className='flex flex-wrap justify-start items-start my-5'>
-					<p className='pr-2 border-2 rounded-lg mr-1 px-1'>
+					<p className='pr-2 border-2 rounded-lg m-1 ml-0 px-1'>
 						{movie.release_date.slice(0, 4)}
 					</p>
-					<p className='pr-2 border-2 rounded-lg mr-1 px-1'>
+					<p className='pr-2 border-2 rounded-lg m-1 ml-0 px-1'>
 						{movie.runtime} min
 					</p>
 
-					<p className='pr-2 border-2 rounded-lg mr-1 px-1 uppercase'>
+					<p className='pr-2 border-2 rounded-lg m-1 ml-0 px-1 uppercase'>
 						{movie.spoken_languages[0].iso_639_1}
 					</p>
 
 					{/* production countries */}
-					<div className='flex border-2 rounded-lg mr-1 px-1'>
+					<div className='flex border-2 rounded-lg m-1 ml-0 px-1'>
 						{movie.production_countries.map((country) => (
 							<p key={country.name} className='pr-3'>
 								{country.name}
