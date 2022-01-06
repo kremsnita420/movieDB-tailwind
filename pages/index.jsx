@@ -40,7 +40,9 @@ export default function Home({ trending }) {
 		}
 		setIsLoading(true)
 		const res = await fetch(
-			`https://api.themoviedb.org/3/search/multi?api_key=6f1ded32feffe837e07e801efb60a6c6&language=en-US&page=${initialPage}&include_adult=false&query=${query}&include_image_language=en,null`
+			`https://api.themoviedb.org/3/search/multi?api_key=6f1ded32feffe837e07e801efb60a6c6&language=en-US&page=${initialPage}&include_adult=false&query=${
+				query || ''
+			}&include_image_language=en,null`
 		)
 		data = await res.json()
 
@@ -52,7 +54,7 @@ export default function Home({ trending }) {
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			searchMulti()
-		}, 1000)
+		}, 3000)
 
 		return () => clearTimeout(timer)
 	}, [query, initialPage])
@@ -84,32 +86,34 @@ export default function Home({ trending }) {
 
 	return (
 		<>
-			<div className='flex relative items-center justify-center h-full w-full'>
-				<div className='w-full mx-auto sepia-[70%]'>
-					<NextImage
-						src={heroImage}
-						width={1500}
-						height={500}
-						layout='responsive'
-						objectFit='cover'
-						placeholder='blur'
-						blurDataURL='https://images.unsplash.com/photo-1613387275674-cb92af1c29d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80'
-						alt='profile photo'
-						priority='high'
-						rel='preload'
-						as='image'
+			{/* movie content */}
+			<Layout>
+				{/* hero image and searchbar */}
+				<div className='flex relative items-center justify-center h-full w-full '>
+					<div className='w-full mx-auto sepia-[70%]'>
+						<NextImage
+							src={heroImage}
+							width={1500}
+							height={700}
+							layout='responsive'
+							objectFit='cover'
+							placeholder='blur'
+							blurDataURL='https://images.unsplash.com/photo-1613387275674-cb92af1c29d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80'
+							alt='profile photo'
+							priority='high'
+							rel='preload'
+							as='image'
+						/>
+					</div>
+
+					<Searchbar
+						isLoading={isLoading}
+						query={query}
+						setQuery={setQuery}
+						handleSubmit={handleSubmit}
+						value={query}
 					/>
 				</div>
-
-				<Searchbar
-					isLoading={isLoading}
-					query={query}
-					setQuery={setQuery}
-					handleSubmit={handleSubmit}
-					value={query}
-				/>
-			</div>
-			<Layout>
 				<SearchResults
 					query={query}
 					movies={movies}
@@ -124,7 +128,7 @@ export default function Home({ trending }) {
 					setInitialPage={setInitialPage}
 				/>
 
-				<h2 className='text-3xl my-10'>Currently Popular</h2>
+				<h2 className='text-3xl my-10 text-center w-full'>Currently Popular</h2>
 
 				<TrendingResults trending={trending} IMAGE_BASE_URL={IMAGE_BASE_URL} />
 			</Layout>

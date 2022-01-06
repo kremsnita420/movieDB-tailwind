@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Header from '../mainHeader/Header'
 
 export default function Layout({ title, description, children }) {
 	return (
@@ -14,8 +15,8 @@ export default function Layout({ title, description, children }) {
 					key='ogimage'
 				/>
 			</Head>
-
-			<main className='container flex flex-col items-center px-5 justify-start mx-auto bg-red-200 min-h-screen'>
+			<Header />
+			<main className='container flex flex-col items-start justify-start mx-auto min-h-screen'>
 				{children}
 			</main>
 		</div>

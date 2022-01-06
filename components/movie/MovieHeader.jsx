@@ -4,9 +4,9 @@ export default function MovieHeader({ movie }) {
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w300'
 	const LOGO_BASE_URL = 'https://image.tmdb.org/t/p/w154'
 	return (
-		<div className='flex justify-between items-center w-full py-2'>
+		<div className='flex flex-col lg:flex-row justify-between items-center w-full py-5'>
 			{/* left side */}
-			<div className='flex flex-col justify-start items-start'>
+			<div className='flex flex-col justify-start items-start w-full'>
 				<h1 className='text-4xl font-semibold'>{movie.title}</h1>
 				<div className='flex justify-start items-start'>
 					<p className='pr-2'>{movie.release_date.slice(0, 4)} </p>
@@ -23,7 +23,7 @@ export default function MovieHeader({ movie }) {
 				</div>
 			</div>
 			{/* right side */}
-			<div className='flex justify-around items-center '>
+			<div className='flex justify-start lg:justify-end items-start w-full'>
 				{/* rating score */}
 				<div className='flex flex-col mr-5'>
 					<div

@@ -7,7 +7,7 @@ export default function PrevAndNextBtn({
 }) {
 	return (
 		<>
-			{query ? (
+			{query.length > 3 ? (
 				<>
 					<div className='flex my-10'>
 						{initialPage > 1 ? (
