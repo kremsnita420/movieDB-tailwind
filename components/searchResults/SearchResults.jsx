@@ -6,14 +6,19 @@ export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 		<>
 			{query ? (
 				<h2 className='text-3xl my-5'>
-					Results for <span className='text-bold uppercase'> {query}</span>
+					Results for{' '}
+					<span className='text-bold'>
+						{'>'}
+						{query}
+						{'<'}
+					</span>
 				</h2>
 			) : (
 				'Use searchbar to look for movies, shows, people, ... '
 			)}
 
 			<div className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2 mt-5'>
-				{movies
+				{query
 					? movies.map((movie) => (
 							<div className='flex flex-col bg-gray-200' key={movie.id}>
 								<NextLink

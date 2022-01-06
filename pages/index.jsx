@@ -12,7 +12,7 @@ export default function Home({ trending }) {
 	let data
 
 	const [isLoading, setIsLoading] = useState(false)
-	const [initialPage, setInitialPage] = useState()
+	const [initialPage, setInitialPage] = useState(1)
 	const [totalPages, setTotalPages] = useState()
 
 	const [query, setQuery] = useState('')
@@ -33,8 +33,10 @@ export default function Home({ trending }) {
 
 	const searchMulti = async () => {
 		if (!query) {
-			setInitialPage(1)
 			return
+		}
+		if (query.length < 0 && query.length > 2) {
+			setInitialPage(1)
 		}
 		setIsLoading(true)
 		const res = await fetch(
@@ -43,16 +45,14 @@ export default function Home({ trending }) {
 		data = await res.json()
 
 		setMovies(data.results)
-
 		setTotalPages(data.total_pages)
-
 		setIsLoading(false)
 	}
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			searchMulti()
-		}, 700)
+		}, 1000)
 
 		return () => clearTimeout(timer)
 	}, [query, initialPage])

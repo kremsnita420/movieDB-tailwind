@@ -7,21 +7,35 @@ export default function PrevAndNextBtn({
 }) {
 	return (
 		<>
-			{movies.length > 0 ? (
+			{query ? (
 				<>
 					<div className='flex my-10'>
+						{initialPage > 1 ? (
+							<button
+								className='bg-red-400 py-1 px-2 mr-5'
+								onClick={() => setInitialPage(1)}>
+								first
+							</button>
+						) : (
+							<button
+								disabled
+								className='bg-red-400 opacity-10 py-1 px-2 mr-5'
+								onClick={() => setInitialPage(1)}>
+								first
+							</button>
+						)}
 						{initialPage === 1 ? (
 							<button
 								disabled
-								className='bg-red-400 opacity-60 py-1 px-2 mr-5'
+								className='bg-red-400 opacity-10 py-1 px-2 mr-5'
 								onClick={() => setInitialPage(initialPage - 1)}>
-								back
+								{'<<'}
 							</button>
 						) : (
 							<button
 								className='bg-red-400 py-1 px-2 mr-5'
 								onClick={() => setInitialPage(initialPage - 1)}>
-								back
+								{'<<'}
 							</button>
 						)}
 
@@ -32,7 +46,7 @@ export default function PrevAndNextBtn({
 						{initialPage === totalPages ? (
 							<button
 								disabled
-								className='bg-red-400 opacity-60 py-1 px-2 ml-5'
+								className='bg-red-400 opacity-10 py-1 px-2 ml-5'
 								onClick={() => setInitialPage(initialPage + 1)}>
 								next
 							</button>
@@ -40,7 +54,21 @@ export default function PrevAndNextBtn({
 							<button
 								className='bg-red-400 py-1 px-2 ml-5'
 								onClick={() => setInitialPage(initialPage + 1)}>
-								next
+								{'>>'}
+							</button>
+						)}
+						{initialPage === totalPages ? (
+							<button
+								disabled
+								className='bg-red-400 py-1 px-2 ml-5 opacity-10'
+								onClick={() => setInitialPage(totalPages)}>
+								last
+							</button>
+						) : (
+							<button
+								className='bg-red-400 py-1 px-2 ml-5'
+								onClick={() => setInitialPage(totalPages)}>
+								last
 							</button>
 						)}
 					</div>
