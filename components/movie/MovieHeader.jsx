@@ -4,19 +4,23 @@ export default function MovieHeader({ movie }) {
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w300'
 	const LOGO_BASE_URL = 'https://image.tmdb.org/t/p/w154'
 	return (
-		<div className='flex flex-col lg:flex-row justify-between items-center w-full py-5'>
+		<div className='flex flex-col lg:flex-row justify-between items-center w-full py-5 px-2'>
 			{/* left side */}
 			<div className='flex flex-col justify-start items-start w-full'>
 				<h1 className='text-4xl font-semibold'>{movie.title}</h1>
-				<div className='flex justify-start items-start'>
-					<p className='pr-2'>{movie.release_date.slice(0, 4)} </p>
-					<p className='px-2'>{movie.spoken_languages[0].english_name} </p>
-					<p className='px-2'>{movie.runtime} min</p>
+				<div className='flex justify-start items-start mt-2'>
+					<p className='pr-2'>{movie.runtime} min,</p>
+					<p className='pr-2'>{movie.release_date.slice(0, 4)}, </p>
+					<p className='px-2 uppercase'>
+						{movie.spoken_languages[0].iso_639_1}
+						{', '}
+					</p>
+
 					{/* production countries */}
 					<div className='flex'>
 						{movie.production_countries.map((country) => (
 							<p key={country.name} className='pr-3'>
-								{country.name}
+								{country.name},
 							</p>
 						))}
 					</div>

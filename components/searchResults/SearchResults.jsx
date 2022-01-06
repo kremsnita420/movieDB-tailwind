@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 
 export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 	return (
-		<>
+		<div className='px-2'>
 			{query.length > 3 ? (
 				<h2 className='text-3xl my-5 w-full text-center'>
 					Results for{' '}
@@ -94,6 +94,6 @@ export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 					<div></div>
 				)}
 			</div>
-		</>
+		</div>
 	)
 }
