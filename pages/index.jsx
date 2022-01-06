@@ -78,6 +78,9 @@ export default function Home({ trending }) {
 		sessionStorage.setItem('searchQuery', JSON.stringify(query))
 		sessionStorage.setItem('initialPage', JSON.stringify(initialPage))
 	}, [movies, query, initialPage])
+	useEffect(() => {
+		setInitialPage(1)
+	}, [query])
 
 	return (
 		<>
