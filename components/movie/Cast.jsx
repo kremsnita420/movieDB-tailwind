@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 
 export default function Cast({ cast }) {
 	return (
-		<div className='flex flex-col text-center'>
+		<div className='flex flex-col text-center mb-10'>
 			<h2 className='text-center my-5'>Top Cast</h2>
 			<div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5'>
 				{cast.slice(0, 20).map((singleCast) => (

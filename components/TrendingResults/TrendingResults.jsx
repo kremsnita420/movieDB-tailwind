@@ -2,12 +2,15 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 
 export default function TrendingResults({ trending, IMAGE_BASE_URL }) {
+	function truncateString(str, num) {
+		return str
+	}
 	console.log(trending)
 	return (
-		<div className='flex w-full h-full justify-start px-2 my-5 overflow-x-scroll overscroll-contain'>
+		<div className='flex w-full h-[420px] justify-start px-2 md:px-0 my-5 overflow-x-scroll overscroll-contain'>
 			{trending.map((trend) => (
 				<div
-					className='flex flex-col mr-2 bg-gray-200 cursor-pointer'
+					className='flex flex-col justify-start items-center mr-2 bg-gray-200 cursor-pointer'
 					key={trend.id}>
 					<NextLink
 						href={
@@ -54,7 +57,10 @@ export default function TrendingResults({ trending, IMAGE_BASE_URL }) {
 					</NextLink>
 
 					<p className='text-center'>{trend.media_type}</p>
-					<h2 className='text-center p-1'>{trend.title || trend.name}</h2>
+					<p className='text-center p-1'>
+						{trend.title ? trend.title.slice(0, 40) : trend.name.slice(0, 40)}
+						...
+					</p>
 				</div>
 			))}
 		</div>

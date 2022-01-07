@@ -1,7 +1,6 @@
 export default function AvailableVideos({ movie, setYtVideo }) {
 	return (
 		<div className='flex flex-col '>
-			<h2 className='text-center'>Videos</h2>
 			<div className='flex flex-wrap items-center justify-center lg:mx-5 my-5'>
 				{movie.videos.results.length === 0 && 'Sorry, no videos'}
 				{movie.videos.results
