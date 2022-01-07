@@ -2,6 +2,7 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 
 export default function TrendingResults({ trending, IMAGE_BASE_URL }) {
+	console.log(trending)
 	return (
 		<div className='flex w-full h-full justify-start px-2 my-5 overflow-x-scroll overscroll-contain'>
 			{trending.map((trend) => (

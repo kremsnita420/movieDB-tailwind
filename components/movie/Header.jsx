@@ -1,13 +1,14 @@
-import NextImage from 'next/image'
-
 export default function MovieHeader({ movie }) {
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w300'
 	const LOGO_BASE_URL = 'https://image.tmdb.org/t/p/w154'
 	return (
-		<div className='flex flex-col lg:flex-row justify-between items-center w-full py-5 px-2'>
+		<div className='flex flex-col md:flex-row justify-between items-center w-full py-5 px-2 absolute top-0 left-0  text-white'>
 			{/* left side */}
 			<div className='flex flex-col justify-start items-start w-full'>
+				{/* title */}
 				<h1 className='text-4xl font-semibold'>{movie.title}</h1>
+				{/* tagline */}
+				<p className='pt-1'>{movie.tagline}</p>
 				<div className='flex flex-wrap justify-start items-start my-5'>
 					<p className='pr-2 border-2 rounded-lg m-1 ml-0 px-1'>
 						{movie.release_date.slice(0, 4)}
@@ -17,7 +18,7 @@ export default function MovieHeader({ movie }) {
 					</p>
 
 					<p className='pr-2 border-2 rounded-lg m-1 ml-0 px-1 uppercase'>
-						{movie.spoken_languages[0].iso_639_1}
+						{movie.original_language}
 					</p>
 
 					{/* production countries */}
@@ -31,19 +32,19 @@ export default function MovieHeader({ movie }) {
 				</div>
 			</div>
 			{/* right side */}
-			<div className='flex justify-start lg:justify-end items-start w-full'>
+			<div className='flex justify-start md:justify-end items-start w-full'>
 				{/* rating score */}
 				<div className='flex flex-col mr-5'>
 					<div
 						className={
 							movie.vote_average < 5
-								? 'p-1 '
+								? 'p-1 bg-red-400'
 								: movie.vote_average > 5 && movie.vote_average < 7
 								? 'p-1 bg-yellow-400'
 								: 'p-1 bg-green-400'
 						}>
 						<p className='text-center'>Rating</p>
-						{`⭐` + movie.vote_average * 10} / 100
+						{`⭐` + movie.vote_average}
 					</div>
 				</div>
 
@@ -59,7 +60,7 @@ export default function MovieHeader({ movie }) {
 						}>
 						<p className='text-center'>Popularity</p>
 						<span className='inline-block'>{'📈'} </span>
-						{Math.round(movie.popularity) / 10} %
+						{Math.round(movie.popularity)} %
 					</div>
 				</div>
 			</div>

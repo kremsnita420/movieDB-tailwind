@@ -1,4 +1,4 @@
-export default function ShowPagePage({ people }) {
+export default function ActorPage({ people }) {
 	console.log(people)
 	return (
 		<div>

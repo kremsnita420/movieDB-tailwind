@@ -63,7 +63,7 @@ export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 														? 'absolute rounded-md p-1 bg-yellow-400 bottom-3 right-2'
 														: 'absolute rounded-md p-1 bg-green-400 bottom-3 right-2'
 												}>
-												{`⭐` + movie.vote_average * 10}
+												{`⭐` + movie.vote_average}
 											</div>
 										) : movie.vote_count || movie.vote_average === 0 ? (
 											<div className='absolute rounded-md p-1 bg-red-400 bottom-3 right-2'>
@@ -87,7 +87,9 @@ export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 							</NextLink>
 
 							<p className='text-center'>{movie.media_type}</p>
-							<h2 className='mb-1 text-center'>{movie.title || movie.name}</h2>
+							<h2 className='mb-1 text-center'>
+								{movie.title ? movie.title : movie.name}
+							</h2>
 						</div>
 					))
 				) : (
