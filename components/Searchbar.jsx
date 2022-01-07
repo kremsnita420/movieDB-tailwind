@@ -6,7 +6,7 @@ export default function Searchbar({
 }) {
 	return (
 		<form
-			className='flex flex-col justify-center items-center w-full absolute top-[25%] left-[0]'
+			className='flex flex-col justify-center items-center w-full md:w-1/2 absolute top-[25%] left-[50%] translate-x-[-50%] px-5'
 			onSubmit={handleSubmit}>
 			<input
 				className='text-sm p-2 w-2/3'
