@@ -7,6 +7,7 @@ import Header from '../../components/movie/Header'
 import Description from '../../components/movie/Description'
 import AvailableVideos from '../../components/movie/AvailableVideos'
 import HeroImage from '../../components/movie/HeroImage'
+import Cast from '../../components/movie/Cast'
 
 export default function MoviePage({ movie, cast }) {
 	const [ytVideo, setYtVideo] = useState(
@@ -29,9 +30,9 @@ export default function MoviePage({ movie, cast }) {
 					<Description movie={movie} />
 				</div>
 
-				<div className='flex flex-col lg:flex-row w-full px-2 md:px-0'>
+				<div className='flex flex-col w-full px-2 md:px-0'>
 					{/* player */}
-					<div className='relative lg:w-[80%] h-[35vh] md:h-[40vh] lg:h-[50vh] xl:h-[60vh] landscape:h-[75vh] my-5'>
+					<div className='relative h-[35vh] md:h-[40vh] lg:h-[50vh] xl:h-[60vh] landscape:h-[75vh] my-5'>
 						<ReactPlayer
 							width='100%'
 							height='100%'
@@ -43,6 +44,7 @@ export default function MoviePage({ movie, cast }) {
 					{/* list of available videos */}
 					<AvailableVideos movie={movie} setYtVideo={setYtVideo} />
 				</div>
+				<Cast cast={cast} />
 			</Layout>
 		</>
 	)
