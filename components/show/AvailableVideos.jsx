@@ -1,9 +1,9 @@
-export default function AvailableVideos({ movie, setYtVideo }) {
+export default function AvailableVideos({ show, setYtVideo }) {
 	return (
 		<div className='flex flex-col '>
 			<div className='flex flex-wrap items-center justify-start md:justify-center lg:mx-5 my-5'>
-				{movie.videos.results.length === 0 && 'Sorry, no videos'}
-				{movie.videos.results
+				{show.videos.results.length === 0 && 'Sorry, no videos'}
+				{show.videos.results
 					.filter((video) => video.official === true)
 					.map((video) => (
 						<button

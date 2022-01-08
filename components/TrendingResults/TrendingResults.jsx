@@ -7,7 +7,7 @@ export default function TrendingResults({ trending, IMAGE_BASE_URL }) {
 	}
 	console.log(trending)
 	return (
-		<div className='flex w-full h-[420px] justify-start px-2 md:px-0 my-5 overflow-x-scroll overscroll-contain'>
+		<div className='flex w-full h-[380px] md:h-[420px] xl:h-[440px] justify-start px-2 md:px-0 my-5 overflow-x-scroll overscroll-contain'>
 			{trending.map((trend) => (
 				<div
 					className='flex flex-col justify-start items-center mr-2 bg-gray-200 cursor-pointer'
@@ -44,7 +44,7 @@ export default function TrendingResults({ trending, IMAGE_BASE_URL }) {
 								</div>
 							</div>
 						) : (
-							<div className=' w-[200px] h-[360px]'>
+							<div className=' w-[150px] h-[270px]'>
 								<Image
 									src='/images/no_img.png'
 									alt=''

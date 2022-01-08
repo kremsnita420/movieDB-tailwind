@@ -1,4 +1,4 @@
-export default function MovieHeader({ movie }) {
+export default function MovieHeader({ show }) {
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w300'
 	const LOGO_BASE_URL = 'https://image.tmdb.org/t/p/w154'
 	return (
@@ -7,30 +7,17 @@ export default function MovieHeader({ movie }) {
 			<div className='flex flex-col justify-start items-start w-full px-5'>
 				{/* title */}
 				<h1 className='text-xl md:text-2xl lg:text-4xl font-semibold'>
-					{movie.title}
+					{show.name}
 				</h1>
-				{/* tagline */}
-				<p className='pt-1'>{movie.tagline}</p>
+
 				<div className='flex flex-wrap justify-start items-start my-5'>
 					<p className='pr-2 border-2 rounded-lg m-1 ml-0 px-1'>
-						{movie.release_date.slice(0, 4)}
-					</p>
-					<p className='pr-2 border-2 rounded-lg m-1 ml-0 px-1'>
-						{movie.runtime} min
+						{show.first_air_date.slice(0, 4)}
 					</p>
 
 					<p className='pr-2 border-2 rounded-lg m-1 ml-0 px-1 uppercase'>
-						{movie.original_language}
+						{show.original_language}
 					</p>
-
-					{/* production countries */}
-					<div className='flex flex-wrap border-2 rounded-lg m-1 ml-0 px-1'>
-						{movie.production_countries.map((country) => (
-							<p key={country.name} className='pr-3'>
-								{country.name}
-							</p>
-						))}
-					</div>
 				</div>
 			</div>
 		</div>

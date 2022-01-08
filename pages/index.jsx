@@ -89,12 +89,12 @@ export default function Home({ trending }) {
 			{/* movie content */}
 			<Layout>
 				{/* hero image and searchbar */}
-				<div className='flex relative items-center justify-center h-full w-[150%] '>
-					<div className='w-full mx-auto sepia-[70%]'>
+				<div className='flex relative items-center justify-center h-full w-full'>
+					<div className='w-full mx-auto sepia'>
 						<NextImage
 							src={heroImage}
 							width={1500}
-							height={300}
+							height={600}
 							layout='responsive'
 							objectFit='cover'
 							placeholder='blur'

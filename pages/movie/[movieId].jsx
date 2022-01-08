@@ -22,7 +22,7 @@ export default function MoviePage({ movie, cast }) {
 	return (
 		<>
 			<Layout>
-				<div className='relative flex flex-col items-start justify-start w-full '>
+				<div className='relative flex flex-col items-center justify-center w-full '>
 					<HeroImage movie={movie} />
 					{/* movie header */}
 					<Header movie={movie} />

@@ -1,13 +1,13 @@
 import NextImage from 'next/image'
 
-export default function HeroImage({ movie }) {
+export default function HeroImage({ show }) {
 	const HERO_BASE_URL = 'https://image.tmdb.org/t/p/w1280'
-	const heroImagePath = movie.backdrop_path
+	const heroImagePath = show.backdrop_path
 	const heroImage = HERO_BASE_URL + heroImagePath
 
 	return (
 		<div className='w-full h-full bg-black '>
-			{movie.backdrop_path ? (
+			{show.backdrop_path ? (
 				<NextImage
 					className='opacity-60'
 					src={heroImage}

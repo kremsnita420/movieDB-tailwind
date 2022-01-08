@@ -7,7 +7,7 @@ export default function Cast({ cast }) {
 			<h2 className='text-center my-5'>Top Cast</h2>
 			<div className='grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-5'>
 				{cast.slice(0, 20).map((singleCast) => (
-					<div key={singleCast.cast_id}>
+					<div key={singleCast.id}>
 						<NextLink href={`/people/${singleCast.id}`}>
 							<a>
 								{singleCast.profile_path ? (
