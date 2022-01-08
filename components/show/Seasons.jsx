@@ -12,7 +12,6 @@ export default function Seasons({ show }) {
 						<div className='w-[150px] h-[200px] bg-black '>
 							{season.poster_path ? (
 								<NextImage
-									className='opacity-60'
 									src={HERO_BASE_URL + season.poster_path}
 									width={150}
 									height={200}
@@ -36,14 +35,12 @@ export default function Seasons({ show }) {
 									placeholder='blur'
 									blurDataURL='https://images.unsplash.com/photo-1613387275674-cb92af1c29d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80'
 									alt=' photo'
-									priority='high'
-									rel='preload'
-									as='image'
 								/>
 							)}
 						</div>
 						<div className='flex flex-col justify-center items-center'>
 							<p className='py-2'>{season.name} </p>
+							<p className='py-2'>{season.air_date} </p>
 						</div>
 					</div>
 				))}
