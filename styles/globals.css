@@ -9,7 +9,7 @@
     }
 
     p {
-        @apply text-sm md:text-lg xl:text-xl;
+        @apply text-base md:text-lg xl:text-xl;
     }
     h2 {
         @apply text-xl md:text-2xl xl:text-3xl font-semibold;

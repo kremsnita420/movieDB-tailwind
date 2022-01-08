@@ -8,7 +8,7 @@ export default function AvailableVideos({ movie, setYtVideo }) {
 					.map((video) => (
 						<button
 							onClick={() => setYtVideo(video.key)}
-							className='bg-green-300 mr-2 py-1 px-2 my-1 rounded-md '
+							className='bg-green-300 mr-2 py-1 px-2 my-1 rounded-md'
 							key={video.id}>
 							{video.name}
 						</button>
