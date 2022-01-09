@@ -36,19 +36,22 @@ export default function Header() {
 		)
 	}
 	return (
-		<div className='container flex justify-center items-center'>
+		<div className='flex justify-between items-center'>
 			<div className='w-full p-2 md:pl-0 '>
 				<Logo />
 			</div>
-			<ul>
-				<li>
-					<NextLink href='/profile'>
-						<a className=''>Profile</a>
-					</NextLink>
-				</li>
-			</ul>
-			Not signed in <br />
-			<button onClick={() => signIn()}>Sign in</button>
+
+			<div className='flex justify-around items-center w-1/4'>
+				<ul>
+					<li>
+						<NextLink href='/profile'>
+							<a className='py-1 px-2 bg-red-300'>Wishlist</a>
+						</NextLink>
+					</li>
+				</ul>
+
+				<button onClick={() => signIn()}>Sign in</button>
+			</div>
 		</div>
 	)
 }
