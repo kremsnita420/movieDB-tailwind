@@ -2,10 +2,6 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 
 export default function TrendingResults({ trending, IMAGE_BASE_URL }) {
-	function truncateString(str, num) {
-		return str
-	}
-	console.log(trending)
 	return (
 		<div className='flex w-full h-[380px] md:h-[420px] xl:h-[440px] justify-start px-2 md:px-0 my-5 overflow-x-scroll overscroll-contain'>
 			{trending.map((trend) => (

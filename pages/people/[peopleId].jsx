@@ -1,9 +1,11 @@
+import Layout from '../../components/layout/Layout'
+
 export default function ActorPage({ people }) {
 	console.log(people)
 	return (
-		<div>
+		<Layout>
 			<h1>{people.title ? people.title : people.name}</h1>
-		</div>
+		</Layout>
 	)
 }
 

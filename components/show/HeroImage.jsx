@@ -6,13 +6,13 @@ export default function HeroImage({ show }) {
 	const heroImage = HERO_BASE_URL + heroImagePath
 
 	return (
-		<div className='w-full h-full bg-black '>
+		<div className='w-full h-full bg-black'>
 			{show.backdrop_path ? (
 				<NextImage
 					className='opacity-60'
 					src={heroImage}
-					width={1500}
-					height={650}
+					width={3000}
+					height={1000}
 					layout='responsive'
 					objectFit='cover'
 					placeholder='blur'

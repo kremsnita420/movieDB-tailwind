@@ -35,6 +35,7 @@ export default function MoviePage({ movie, cast }) {
 					{/* player */}
 					<div className='relative h-[35vh] md:h-[40vh] lg:h-[50vh] xl:h-[60vh] landscape:h-[75vh] my-5'>
 						<ReactPlayer
+							controls={true}
 							width='100%'
 							height='100%'
 							className='absolute top-0 left-0'

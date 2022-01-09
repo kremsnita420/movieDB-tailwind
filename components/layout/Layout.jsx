@@ -15,8 +15,8 @@ export default function Layout({ title, description, children }) {
 					key='ogimage'
 				/>
 			</Head>
-			<Header />
-			<main className='container flex flex-col items-center justify-start mx-auto min-h-screen w-full'>
+			<main className='container flex flex-col mx-auto  min-h-screen w-full'>
+				<Header />
 				{children}
 			</main>
 		</div>
