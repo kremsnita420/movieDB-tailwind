@@ -14,7 +14,7 @@ export default function Header() {
 					<Logo />
 				</div>
 
-				<div className='flex justify-around items-center w-1/4'>
+				<div className='flex justify-around items-center '>
 					<ul className=''>
 						<li>
 							<NextLink href='/profile'>
@@ -28,7 +28,7 @@ export default function Header() {
 						src={session.user.image}
 						alt=''
 					/>
-					<button className='min-w-[60px]' onClick={() => signOut()}>
+					<button className=' px-2 py-1' onClick={() => signOut()}>
 						Sign out
 					</button>
 				</div>
@@ -41,7 +41,7 @@ export default function Header() {
 				<Logo />
 			</div>
 
-			<div className='flex justify-around items-center w-1/4'>
+			<div className='flex justify-around items-center'>
 				<ul>
 					<li>
 						<NextLink href='/profile'>
@@ -50,7 +50,9 @@ export default function Header() {
 					</li>
 				</ul>
 
-				<button onClick={() => signIn()}>Sign in</button>
+				<button className=' px-2 py-1' onClick={() => signIn()}>
+					Sign in
+				</button>
 			</div>
 		</div>
 	)
