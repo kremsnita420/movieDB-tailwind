@@ -8,6 +8,7 @@ import Description from '../../components/movie/Description'
 import AvailableVideos from '../../components/movie/AvailableVideos'
 import HeroImage from '../../components/movie/HeroImage'
 import Cast from '../../components/movie/Cast'
+import { stringify } from 'postcss'
 
 export default function MoviePage({ movie, cast }) {
 	const [ytVideo, setYtVideo] = useState(
@@ -16,8 +17,21 @@ export default function MoviePage({ movie, cast }) {
 			: 'b9434BoGkNQ'
 	)
 
-	console.log(movie)
-	console.log(cast)
+	async function saveToWatchlist() {
+		const response = await fetch('/api/watchlist/insertMovie', {
+			method: 'POST',
+			body: JSON.stringify({
+				id: movie.id,
+				name: movie.title,
+				desc: movie.tagline,
+			}),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+		const data = await response.json()
+		console.log(data)
+	}
 
 	return (
 		<>
@@ -27,6 +41,11 @@ export default function MoviePage({ movie, cast }) {
 					{/* movie header */}
 					<Header movie={movie} />
 					{/* movie description */}
+					<button
+						onClick={saveToWatchlist}
+						className='bg-red-300 mt-10 py-2 px-3'>
+						Save to watchlist
+					</button>
 					<Description movie={movie} />
 				</div>
 

@@ -30,7 +30,6 @@ export default function Home({ trending }) {
 	}
 
 	// search for the movies, shows, actors...
-
 	const searchMulti = async () => {
 		if (!query) {
 			return
