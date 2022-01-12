@@ -8,7 +8,8 @@ import Description from '../../components/movie/Description'
 import AvailableVideos from '../../components/movie/AvailableVideos'
 import HeroImage from '../../components/movie/HeroImage'
 import Cast from '../../components/movie/Cast'
-import { stringify } from 'postcss'
+
+import { useSession } from 'next-auth/react'
 
 export default function MoviePage({ movie, cast }) {
 	const [ytVideo, setYtVideo] = useState(
@@ -16,6 +17,9 @@ export default function MoviePage({ movie, cast }) {
 			? movie.videos.results[0].key
 			: 'b9434BoGkNQ'
 	)
+
+	const { data: session } = useSession()
+	console.log(session)
 
 	async function saveToWatchlist() {
 		const response = await fetch('/api/watchlist/insertMovie', {
@@ -84,7 +88,6 @@ export async function getServerSideProps(context) {
 	const castResponse = await fetch(
 		`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=6f1ded32feffe837e07e801efb60a6c6&language=en-US`
 	)
-
 	const castData = await castResponse.json()
 
 	return {

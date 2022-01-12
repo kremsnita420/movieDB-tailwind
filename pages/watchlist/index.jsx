@@ -5,16 +5,16 @@ import Layout from '../../components/layout/Layout'
 export default function ProfilePage({ movies }) {
 	const { data: session, status } = useSession()
 
-	console.log(movies)
-
 	if (status === 'authenticated') {
 		return (
 			<Layout>
 				<div className='flex flex-col items-center justify-start'>
 					<h1 className='py-5 font-bold'>Watch List</h1>
-					{movies.map((movie) => (
-						<p key={movie._id}>{movie.name}</p>
-					))}
+					{movies
+						.filter((value) => value.userEmail === session.user.email)
+						.map((movie) => (
+							<p key={movie._id}>{movie.name}</p>
+						))}
 				</div>
 			</Layout>
 		)

@@ -23,18 +23,20 @@ export default async function saveToDB(req, res) {
             if (result === null) {
                 const result = await watchlist.insertOne(data);
                 console.log("add", data.name)
+                client.close()
                 return res.status(201).json({ message: `Data inserted successfully!` });
 
 
             } else {
                 console.log("already exist", result.name)
+                client.close()
                 return res.status(200).json({ message: `Data already exists on your list` });
 
 
 
 
             }
-            client.close()
+
 
         })
 
