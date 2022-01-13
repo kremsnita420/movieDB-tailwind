@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
+
 import ReactPlayer from 'react-player/youtube'
+import { useSession } from 'next-auth/react'
 
 import Layout from '../../components/layout/Layout'
 import Header from '../../components/movie/Header'
@@ -8,8 +10,6 @@ import Description from '../../components/movie/Description'
 import AvailableVideos from '../../components/movie/AvailableVideos'
 import HeroImage from '../../components/movie/HeroImage'
 import Cast from '../../components/movie/Cast'
-
-import { useSession } from 'next-auth/react'
 
 export default function MoviePage({ movie, cast }) {
 	const [ytVideo, setYtVideo] = useState(
@@ -38,40 +38,38 @@ export default function MoviePage({ movie, cast }) {
 	}
 
 	return (
-		<>
-			<Layout>
-				<div className='relative flex flex-col items-center justify-center w-full '>
-					<HeroImage movie={movie} />
-					{/* movie header */}
-					<Header movie={movie} />
-					{/* movie description */}
-					<button
-						onClick={saveToWatchlist}
-						className='bg-red-300 mt-10 py-2 px-3'>
-						Save to watchlist
-					</button>
-					<Description movie={movie} />
+		<Layout>
+			<div className='relative flex flex-col items-center justify-center w-full '>
+				<HeroImage movie={movie} />
+				{/* movie header */}
+				<Header movie={movie} />
+				{/* movie description */}
+				<button
+					onClick={saveToWatchlist}
+					className='bg-red-300 mt-10 py-2 px-3'>
+					Save to watchlist
+				</button>
+				<Description movie={movie} />
+			</div>
+
+			<h2 className='text-center'>Videos</h2>
+			<div className='flex flex-col w-full px-2 md:px-0'>
+				{/* player */}
+				<div className='relative h-[35vh] md:h-[40vh] lg:h-[50vh] xl:h-[60vh] landscape:h-[75vh] my-5'>
+					<ReactPlayer
+						controls={true}
+						width='100%'
+						height='100%'
+						className='absolute top-0 left-0'
+						url={`https://www.youtube.com/watch?v=${ytVideo}`}
+					/>
 				</div>
 
-				<h2 className='text-center'>Videos</h2>
-				<div className='flex flex-col w-full px-2 md:px-0'>
-					{/* player */}
-					<div className='relative h-[35vh] md:h-[40vh] lg:h-[50vh] xl:h-[60vh] landscape:h-[75vh] my-5'>
-						<ReactPlayer
-							controls={true}
-							width='100%'
-							height='100%'
-							className='absolute top-0 left-0'
-							url={`https://www.youtube.com/watch?v=${ytVideo}`}
-						/>
-					</div>
-
-					{/* list of available videos */}
-					<AvailableVideos movie={movie} setYtVideo={setYtVideo} />
-				</div>
-				<Cast cast={cast} />
-			</Layout>
-		</>
+				{/* list of available videos */}
+				<AvailableVideos movie={movie} setYtVideo={setYtVideo} />
+			</div>
+			<Cast cast={cast} />
+		</Layout>
 	)
 }
 
