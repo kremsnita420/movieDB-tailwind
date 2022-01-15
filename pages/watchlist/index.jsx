@@ -31,7 +31,11 @@ export default function ProfilePage({ movies }) {
 }
 
 export async function getServerSideProps() {
-	const req = await fetch('http://localhost:3000/api/watchlist')
+	const req = await fetch(
+		process.env
+			? 'http://localhost:3000/api/watchlist'
+			: 'https://movie-db-tailwind.vercel.app/watchlist'
+	)
 	const data = await req.json()
 
 	console.log(data)
