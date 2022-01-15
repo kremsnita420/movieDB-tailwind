@@ -15,25 +15,17 @@ export default function Header() {
 				</div>
 
 				<div className='flex justify-center items-center '>
-					<ul className=''>
+					<ul className='mr-2'>
 						<li>
 							<NextLink href='/watchlist'>
 								<a className='py-1 px-2 bg-red-300'>Watchlist</a>
 							</NextLink>
 						</li>
 					</ul>
-					<div className='px-2 py-1'>
-						<Image
-							className='rounded-full'
-							width={40}
-							height={40}
-							src={session.user.image}
-							alt=''
-						/>
-					</div>
+					<img src={session.user.image} width={30} height={30} alt='' />
 
 					<button className='px-2 py-1' onClick={() => signOut()}>
-						Sign out
+						Log out
 					</button>
 				</div>
 			</div>

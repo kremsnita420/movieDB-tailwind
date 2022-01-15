@@ -2,18 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer components {
-    html{
-        @apply bg-purple-300
-    }
+	html {
+		@apply bg-purple-300;
+	}
 
-    p {
-        @apply text-base md:text-lg xl:text-xl;
-    }
-    h2 {
-        @apply text-xl md:text-2xl xl:text-3xl font-semibold;
-    }
-  }
-
- 
+	p {
+		@apply text-base xl:text-lg;
+	}
+	h2 {
+		@apply text-xl md:text-2xl xl:text-3xl font-semibold;
+	}
+}

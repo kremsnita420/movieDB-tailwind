@@ -28,6 +28,7 @@ export default function MoviePage({ movie, cast }) {
 				id: movie.id,
 				name: movie.title,
 				desc: movie.tagline,
+				userEmail: session.user.email,
 			}),
 			headers: {
 				'Content-Type': 'application/json',

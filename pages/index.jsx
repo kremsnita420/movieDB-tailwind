@@ -89,7 +89,7 @@ export default function Home({ trending }) {
 			<Layout>
 				{/* hero image and searchbar */}
 				<div className='flex relative items-center justify-center h-full w-full'>
-					<div className='w-full mx-auto sepia'>
+					<div className='w-full mx-auto sepia '>
 						<NextImage
 							src={heroImage}
 							width={1500}

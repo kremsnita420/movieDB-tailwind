@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import { getSession } from "next-auth/react"
 const uri = process.env.MONGODB_URI;
 
 export const config = {
@@ -9,6 +10,8 @@ export const config = {
 
 
 export default async function saveToDB(req, res) {
+    const session = await getSession({ req })
+
     if (req.method === "POST") {
         const data = req.body;
         const client = await
@@ -17,10 +20,10 @@ export default async function saveToDB(req, res) {
         const db = client.db();
         const watchlist = db.collection("movies");
 
-        watchlist.findOne({ id: req.body.id }, async function (error, result) {
+        watchlist.findOne({ id: req.body.id, userEmail: session.user.email }, async function (error, result) {
             if (error) throw error
 
-            if (result === null) {
+            if (!result) {
                 const result = await watchlist.insertOne(data);
                 console.log("Added", data.name)
                 client.close()
@@ -28,7 +31,7 @@ export default async function saveToDB(req, res) {
 
 
             } else {
-                console.log("Already exists", result.name)
+                console.log("Already exists")
                 client.close()
                 return res.status(200).json({ message: `Data already exists on your list` });
 
