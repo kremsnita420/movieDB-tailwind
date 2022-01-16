@@ -33,13 +33,13 @@ export default function ProfilePage({ movies }) {
 
 export async function getServerSideProps(ctx) {
 	// get the current environment
-	const dev = process.env.NODE_ENV !== 'production'
-	const { DEV_URL, PROD_URL } = process.env
+	let dev = process.env.NODE_ENV !== 'production'
+	let { DEV_URL, PROD_URL } = process.env
 
 	// request posts from api
-	const response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/watchlist`)
+	let response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/watchlist`)
 	// extract the data
-	const data = await response.json()
+	let data = await response.json()
 
 	return {
 		props: {
