@@ -31,12 +31,15 @@ export default function ProfilePage({ movies }) {
 	)
 }
 
-export async function getServerSideProps() {
-	const url = process.env.NEXT_PUBLIC_MONGODB_URL
-	const req = await fetch(url)
-	const data = await req.json()
+export async function getServerSideProps(ctx) {
+	// get the current environment
+	const dev = process.env.NODE_ENV !== 'production'
+	const { DEV_URL, PROD_URL } = process.env
 
-	console.log(data)
+	// request posts from api
+	const response = await fetch(`${dev ? DEV_URL : PROD_URL}/api/watchlist`)
+	// extract the data
+	const data = await response.json()
 
 	return {
 		props: {
