@@ -19,7 +19,6 @@ export default function MoviePage({ movie, cast }) {
 	)
 
 	const { data: session } = useSession()
-	console.log(session)
 
 	async function saveToWatchlist() {
 		const response = await fetch('/api/watchlist/insertMovie', {

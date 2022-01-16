@@ -53,7 +53,7 @@ export default function Home({ trending }) {
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			searchMulti()
-		}, 3000)
+		}, 1000)
 
 		return () => clearTimeout(timer)
 	}, [query, initialPage])
@@ -118,14 +118,17 @@ export default function Home({ trending }) {
 					movies={movies}
 					IMAGE_BASE_URL={IMAGE_BASE_URL}
 				/>
-
-				<PrevAndNextBtn
-					movies={movies}
-					query={query}
-					initialPage={initialPage}
-					totalPages={totalPages}
-					setInitialPage={setInitialPage}
-				/>
+				{movies ? (
+					<PrevAndNextBtn
+						movies={movies}
+						query={query}
+						initialPage={initialPage}
+						totalPages={totalPages}
+						setInitialPage={setInitialPage}
+					/>
+				) : (
+					<div></div>
+				)}
 
 				<h2 className='text-3xl my-10 text-center w-full'>Currently Popular</h2>
 

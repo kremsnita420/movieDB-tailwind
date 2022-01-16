@@ -83,13 +83,15 @@ export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 											</div>
 										)}
 									</div>
+
+									<p className='text-center font-light'>{movie.media_type}</p>
+									<p className='mb-1 font-semibold text-center'>
+										{movie.title
+											? movie.title.split(':')
+											: movie.name.split(':')}
+									</p>
 								</a>
 							</NextLink>
-
-							<p className='text-center'>{movie.media_type}</p>
-							<h2 className='mb-1 text-center'>
-								{movie.title ? movie.title : movie.name}
-							</h2>
 						</div>
 					))
 				) : (

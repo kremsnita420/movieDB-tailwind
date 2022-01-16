@@ -14,7 +14,9 @@ export default function ProfilePage({ movies }) {
 					{movies
 						.filter((value) => value.userEmail === session.user.email)
 						.map((movie) => (
-							<p key={movie._id}>{movie.name}</p>
+							<p className='text-left w-full px-2 md:px-0' key={movie._id}>
+								{movie.name}
+							</p>
 						))}
 				</div>
 			</Layout>
