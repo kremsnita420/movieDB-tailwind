@@ -4,6 +4,7 @@ import Layout from '../../components/layout/Layout'
 
 export default function ProfilePage({ movies }) {
 	const { data: session, status } = useSession()
+	console.log(process.env.NODE_ENV)
 
 	if (status === 'authenticated') {
 		return (
@@ -31,11 +32,8 @@ export default function ProfilePage({ movies }) {
 }
 
 export async function getServerSideProps() {
-	const req = await fetch(
-		process.env.NODE_ENV
-			? 'http://localhost:3000/api/watchlist'
-			: 'https://movie-db-tailwind.vercel.app/watchlist'
-	)
+	const url = process.env.NEXT_PUBLIC_MONGODB_URL
+	const req = await fetch(url)
 	const data = await req.json()
 
 	console.log(data)
