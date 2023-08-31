@@ -11,6 +11,6 @@
 		@apply text-base xl:text-lg;
 	}
 	h2 {
-		@apply text-xl md:text-2xl xl:text-3xl font-semibold;
+		@apply text-xl font-semibold md:text-2xl xl:text-3xl;
 	}
 }

@@ -1,14 +1,14 @@
 import Layout from '../../components/layout/Layout';
 import NextLink from 'next/link';
 import NextImage from 'next/image';
-export default function ActorPage({ people, moviesAndShows }) {
+export default function ActorPage({ moviesAndShows }) {
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w300/';
 	console.log(moviesAndShows);
 	return (
 		<Layout>
 			<div className='w-full md:w-[400px] xl:w-[600px] mx-auto'>
 				<NextImage
-					src={`https://image.tmdb.org/t/p/original/${people.profile_path}`}
+					src={`https://image.tmdb.org/t/p/original/${moviesAndShows.profile_path}`}
 					width={300}
 					height={400}
 					layout='responsive'
@@ -19,11 +19,11 @@ export default function ActorPage({ people, moviesAndShows }) {
 				/>
 			</div>
 			<h1 className='my-4 text-2xl lg:text-4xl'>
-				{people.title ? people.title : people.name}
+				{moviesAndShows.title ? moviesAndShows.title : moviesAndShows.name}
 			</h1>
-			<h2 className='mb-4 text-xl lg:text-2xl'>{people.place_of_birth}</h2>
-			<p className='mb-4 text-lg'>{people.birthday}</p>
-			<p className='mb-12'>{people.biography}</p>
+			<h2 className='mb-4 text-xl lg:text-2xl'>{moviesAndShows.place_of_birth}</h2>
+			<p className='mb-4 text-lg'>{moviesAndShows.birthday}</p>
+			<p className='mb-12'>{moviesAndShows.biography}</p>
 
 			<h3 className='my-4 text-2xl lg:text-4xl'>Known for</h3>
 			<div className='flex flex-wrap gap-6'>
@@ -56,7 +56,13 @@ export default function ActorPage({ people, moviesAndShows }) {
 									alt=' photo'
 								/>
 							</div>
-							<p className='p-2 text-center text-ellipsis '>{show.title}</p>
+							<p className='pt-2 font-serif text-center text-gray-500 text-ellipsis '>
+								{' '}
+								{show.media_type}
+							</p>
+							<p className='p-2 text-center text-ellipsis '>
+								{show.title ? show.title : show.name}
+							</p>
 						</div>
 					</NextLink>
 				))}
@@ -68,19 +74,13 @@ export default function ActorPage({ people, moviesAndShows }) {
 export async function getServerSideProps(context) {
 	const { peopleId } = context.query;
 
-	//fetch people
-	const response = await fetch(
-		`https://api.themoviedb.org/3/person/${peopleId}?api_key=${process.env.NEXT_PUBLIC_TMD_API}&language=en-US&append_to_response=movie_credits`
-	);
-	const peopleData = await response.json();
-
+	//fetch people and credits
 	const combinedCredits = await fetch(
 		`https://api.themoviedb.org/3/person/${peopleId}?api_key=${process.env.NEXT_PUBLIC_TMD_API}&language=en-US&append_to_response=combined_credits`
 	);
 	const combined = await combinedCredits.json();
 	return {
 		props: {
-			people: peopleData,
 			moviesAndShows: combined,
 		},
 	};
