@@ -1,11 +1,11 @@
-import Image from 'next/image'
-import NextLink from 'next/link'
+import Image from 'next/image';
+import NextLink from 'next/link';
 
 export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 	return (
 		<div className='px-2'>
 			{query.length > 3 ? (
-				<h2 className='text-3xl my-5 w-full text-center'>
+				<h2 className='w-full my-5 text-3xl text-center'>
 					Results for{' '}
 					<span className='text-bold'>
 						{'>'}
@@ -14,15 +14,17 @@ export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 					</span>
 				</h2>
 			) : (
-				<h2 className='text-lg my-5 w-full text-center'>
+				<h2 className='w-full my-5 text-lg text-center'>
 					Tip: Use searchbar to look for movies, shows, people, ...{' '}
 				</h2>
 			)}
 
-			<div className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2 mt-5'>
+			<div className='grid grid-cols-3 gap-2 mt-5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7'>
 				{query.length > 3 ? (
-					movies.map((movie) => (
-						<div className='flex flex-col bg-gray-200' key={movie.id}>
+					movies?.map((movie) => (
+						<div
+							className='flex flex-col bg-gray-200'
+							key={movie.id}>
 							<NextLink
 								href={
 									movie.media_type === 'tv'
@@ -44,7 +46,6 @@ export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 													: '/images/no_img.png'
 											}
 											objectFit='fill'
-											alt=''
 											width={500}
 											height={700}
 											placeholder='blur'
@@ -66,7 +67,7 @@ export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 												{`⭐` + movie.vote_average}
 											</div>
 										) : movie.vote_count || movie.vote_average === 0 ? (
-											<div className='absolute rounded-md p-1 bg-red-400 bottom-3 right-2'>
+											<div className='absolute p-1 bg-red-400 rounded-md bottom-3 right-2'>
 												<p>No score</p>
 											</div>
 										) : (
@@ -84,11 +85,9 @@ export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 										)}
 									</div>
 
-									<p className='text-center font-light'>{movie.media_type}</p>
+									<p className='font-light text-center'>{movie.media_type}</p>
 									<p className='mb-1 font-semibold text-center'>
-										{movie.title
-											? movie.title.split(':')
-											: movie.name.split(':')}
+										{movie.title ? movie.title.split(':') : movie.name.split(':')}
 									</p>
 								</a>
 							</NextLink>
@@ -99,5 +98,5 @@ export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 				)}
 			</div>
 		</div>
-	)
+	);
 }

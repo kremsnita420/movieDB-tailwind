@@ -1,9 +1,9 @@
-import NextImage from 'next/image'
+import NextImage from 'next/image';
 
 export default function HeroImage({ movie }) {
-	const HERO_BASE_URL = 'https://image.tmdb.org/t/p/w1280'
-	const heroImagePath = movie.backdrop_path
-	const heroImage = HERO_BASE_URL + heroImagePath
+	const HERO_BASE_URL = 'https://image.tmdb.org/t/p/w1280';
+	const heroImagePath = movie.backdrop_path;
+	const heroImage = HERO_BASE_URL + heroImagePath;
 
 	return (
 		<div className='w-full h-full bg-black '>
@@ -12,7 +12,7 @@ export default function HeroImage({ movie }) {
 					className='opacity-60'
 					src={heroImage}
 					width={1500}
-					height={650}
+					height={900}
 					layout='responsive'
 					objectFit='cover'
 					placeholder='blur'
@@ -24,7 +24,7 @@ export default function HeroImage({ movie }) {
 					className='opacity-60'
 					src='/images/no_img.png'
 					width={1500}
-					height={700}
+					height={900}
 					layout='responsive'
 					objectFit='cover'
 					placeholder='blur'
@@ -33,5 +33,5 @@ export default function HeroImage({ movie }) {
 				/>
 			)}
 		</div>
-	)
+	);
 }

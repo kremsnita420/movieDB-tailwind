@@ -1,62 +1,64 @@
-import React from 'react'
-import NextImage from 'next/image'
-import { useEffect, useState, useRef } from 'react'
-import Layout from '../components/layout/Layout'
-import PrevAndNextBtn from '../components/PrevAndNextBtn'
-import Searchbar from '../components/Searchbar'
-import SearchResults from '../components/searchResults/SearchResults'
-import TrendingResults from '../components/TrendingResults/TrendingResults'
-import { useRouter } from 'next/router'
+import React from 'react';
+import NextImage from 'next/image';
+import { useEffect, useState, useRef } from 'react';
+import Layout from '../components/layout/Layout';
+import PrevAndNextBtn from '../components/PrevAndNextBtn';
+import Searchbar from '../components/Searchbar';
+import SearchResults from '../components/searchResults/SearchResults';
+import TrendingResults from '../components/TrendingResults/TrendingResults';
+import { useRouter } from 'next/router';
 
 export default function Home({ trending }) {
-	let data
+	let data;
 
-	const [isLoading, setIsLoading] = useState(false)
-	const [initialPage, setInitialPage] = useState(1)
-	const [totalPages, setTotalPages] = useState()
+	const [isLoading, setIsLoading] = useState(false);
+	const [initialPage, setInitialPage] = useState(1);
+	const [totalPages, setTotalPages] = useState();
 
-	const [query, setQuery] = useState('')
-	const [movies, setMovies] = useState([])
+	const [query, setQuery] = useState('');
+	const [movies, setMovies] = useState([]);
 
-	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w300'
-	const HERO_BASE_URL = 'https://image.tmdb.org/t/p/w1280'
+	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w300';
+	const HERO_BASE_URL = 'https://image.tmdb.org/t/p/w1280';
 
-	const heroImagePath = trending[0].backdrop_path
-	const heroImage = HERO_BASE_URL + heroImagePath
+	const heroImagePath = trending[0].backdrop_path;
+	const heroImage = HERO_BASE_URL + heroImagePath;
 
 	const handleSubmit = (event) => {
-		event.preventDefault()
-		searchMulti()
-	}
+		event.preventDefault();
+		searchMulti();
+	};
 
 	// search for the movies, shows, actors...
 	const searchMulti = async () => {
 		if (!query) {
-			return
+			return;
 		}
 		if (query.length < 0 && query.length > 2) {
-			setInitialPage(1)
+			setInitialPage(1);
 		}
-		setIsLoading(true)
+		setIsLoading(true);
 		const res = await fetch(
-			`https://api.themoviedb.org/3/search/multi?api_key=6f1ded32feffe837e07e801efb60a6c6&language=en-US&page=${initialPage}&include_adult=false&query=${
+			`https://api.themoviedb.org/3/search/multi?api_key=${
+				process.env.NEXT_PUBLIC_TMD_API
+			}&language=en-US&page=${initialPage}&include_adult=false&query=${
 				query || ''
 			}&include_image_language=en,null`
-		)
-		data = await res.json()
+		);
+		data = await res.json();
 
-		setMovies(data.results)
-		setTotalPages(data.total_pages)
-		setIsLoading(false)
-	}
+		setMovies(data.results);
+		setTotalPages(data.total_pages);
+		setIsLoading(false);
+	};
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			searchMulti()
-		}, 1000)
+			searchMulti();
+		}, 2000);
 
-		return () => clearTimeout(timer)
-	}, [query, initialPage])
+		return () => clearTimeout(timer);
+	}, [query, initialPage]);
 
 	useEffect(() => {
 		if (
@@ -64,36 +66,36 @@ export default function Home({ trending }) {
 			sessionStorage.getItem('initialPage') ||
 			sessionStorage.getItem('searchQuery')
 		) {
-			setMovies(JSON.parse(sessionStorage.getItem('searchResult')))
-			setQuery(JSON.parse(sessionStorage.getItem('searchQuery')))
-			setInitialPage(JSON.parse(sessionStorage.getItem('initialPage')))
+			setMovies(JSON.parse(sessionStorage.getItem('searchResult')));
+			setQuery(JSON.parse(sessionStorage.getItem('searchQuery')));
+			setInitialPage(JSON.parse(sessionStorage.getItem('initialPage')));
 		} else {
-			sessionStorage.setItem('searchResult', JSON.stringify(movies))
-			sessionStorage.setItem('searchQuery', JSON.stringify(query))
-			sessionStorage.setItem('initialPage', JSON.stringify(initialPage))
+			sessionStorage.setItem('searchResult', JSON.stringify(movies));
+			sessionStorage.setItem('searchQuery', JSON.stringify(query));
+			sessionStorage.setItem('initialPage', JSON.stringify(initialPage));
 		}
-	}, [])
+	}, []);
 
 	useEffect(() => {
-		sessionStorage.setItem('searchResult', JSON.stringify(movies))
-		sessionStorage.setItem('searchQuery', JSON.stringify(query))
-		sessionStorage.setItem('initialPage', JSON.stringify(initialPage))
-	}, [movies, query, initialPage])
+		sessionStorage.setItem('searchResult', JSON.stringify(movies));
+		sessionStorage.setItem('searchQuery', JSON.stringify(query));
+		sessionStorage.setItem('initialPage', JSON.stringify(initialPage));
+	}, [movies, query, initialPage]);
 	useEffect(() => {
-		setInitialPage(1)
-	}, [query])
+		setInitialPage(1);
+	}, [query]);
 
 	return (
 		<>
 			{/* movie content */}
 			<Layout>
 				{/* hero image and searchbar */}
-				<div className='flex relative items-center justify-center h-full w-full'>
+				<div className='relative flex items-center justify-center w-full h-full'>
 					<div className='w-full mx-auto sepia '>
 						<NextImage
 							src={heroImage}
 							width={1500}
-							height={600}
+							height={900}
 							layout='responsive'
 							objectFit='cover'
 							placeholder='blur'
@@ -130,29 +132,33 @@ export default function Home({ trending }) {
 					<div></div>
 				)}
 
-				<h2 className='text-3xl my-10 text-center w-full'>Currently Popular</h2>
+				<h2 className='w-full my-10 text-3xl text-center'>Currently Popular</h2>
 
-				<TrendingResults trending={trending} IMAGE_BASE_URL={IMAGE_BASE_URL} />
+				<TrendingResults
+					trending={trending}
+					IMAGE_BASE_URL={IMAGE_BASE_URL}
+				/>
 			</Layout>
 		</>
-	)
+	);
 }
 
 export async function getServerSideProps() {
 	const res = await fetch(
-		`https://api.themoviedb.org/3/trending/all/day?api_key=6f1ded32feffe837e07e801efb60a6c6&include_adult=false&page=1`
-	)
-	const data = await res.json()
+		`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.NEXT_PUBLIC_TMD_API}&include_adult=false&page=1`
+	);
+	console.log(process.env.NEXT_PUBLIC_TMD_API);
+	const data = await res.json();
 
 	if (!data) {
 		return {
 			notFound: true,
-		}
+		};
 	}
 
 	return {
 		props: {
 			trending: data.results,
 		},
-	}
+	};
 }

@@ -1,41 +1,17 @@
-import React from 'react'
-import { useState } from 'react'
-
-import ReactPlayer from 'react-player/youtube'
-import { useSession } from 'next-auth/react'
-
-import Layout from '../../components/layout/Layout'
-import Header from '../../components/movie/Header'
-import Description from '../../components/movie/Description'
-import AvailableVideos from '../../components/movie/AvailableVideos'
-import HeroImage from '../../components/movie/HeroImage'
-import Cast from '../../components/movie/Cast'
+import React from 'react';
+import { useState } from 'react';
+import ReactPlayer from 'react-player/youtube';
+import Layout from '../../components/layout/Layout';
+import Header from '../../components/movie/Header';
+import Description from '../../components/movie/Description';
+import AvailableVideos from '../../components/movie/AvailableVideos';
+import HeroImage from '../../components/movie/HeroImage';
+import Cast from '../../components/movie/Cast';
 
 export default function MoviePage({ movie, cast }) {
 	const [ytVideo, setYtVideo] = useState(
-		movie.videos.results.length > 0
-			? movie.videos.results[0].key
-			: 'b9434BoGkNQ'
-	)
-
-	const { data: session } = useSession()
-
-	async function saveToWatchlist() {
-		const response = await fetch('/api/watchlist/insertMovie', {
-			method: 'POST',
-			body: JSON.stringify({
-				id: movie.id,
-				name: movie.title,
-				desc: movie.tagline,
-				userEmail: session.user.email,
-			}),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
-		const data = await response.json()
-		console.log(data)
-	}
+		movie.videos.results.length > 0 ? movie.videos.results[0].key : 'b9434BoGkNQ'
+	);
 
 	return (
 		<Layout>
@@ -44,11 +20,7 @@ export default function MoviePage({ movie, cast }) {
 				{/* movie header */}
 				<Header movie={movie} />
 				{/* movie description */}
-				<button
-					onClick={saveToWatchlist}
-					className='bg-red-300 mt-10 py-2 px-3'>
-					Save to watchlist
-				</button>
+
 				<Description movie={movie} />
 			</div>
 
@@ -66,32 +38,35 @@ export default function MoviePage({ movie, cast }) {
 				</div>
 
 				{/* list of available videos */}
-				<AvailableVideos movie={movie} setYtVideo={setYtVideo} />
+				<AvailableVideos
+					movie={movie}
+					setYtVideo={setYtVideo}
+				/>
 			</div>
 			<Cast cast={cast} />
 		</Layout>
-	)
+	);
 }
 
 export async function getServerSideProps(context) {
-	const { movieId } = context.query
+	const { movieId } = context.query;
 
 	//fetch movie
 	const response = await fetch(
-		`https://api.themoviedb.org/3/movie/${movieId}?api_key=6f1ded32feffe837e07e801efb60a6c6&language=en-US&append_to_response=videos&include_image_language=en,null`
-	)
-	const movieData = await response.json()
+		`https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_TMD_API}&language=en-US&append_to_response=videos&include_image_language=en,null`
+	);
+	const movieData = await response.json();
 
 	//fetch cast
 	const castResponse = await fetch(
-		`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=6f1ded32feffe837e07e801efb60a6c6&language=en-US`
-	)
-	const castData = await castResponse.json()
+		`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${process.env.NEXT_PUBLIC_TMD_API}&language=en-US`
+	);
+	const castData = await castResponse.json();
 
 	return {
 		props: {
 			movie: movieData,
 			cast: castData.cast,
 		},
-	}
+	};
 }

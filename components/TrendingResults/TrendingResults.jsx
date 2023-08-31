@@ -1,18 +1,16 @@
-import Image from 'next/image'
-import NextLink from 'next/link'
+import Image from 'next/image';
+import NextLink from 'next/link';
 
 export default function TrendingResults({ trending, IMAGE_BASE_URL }) {
 	return (
 		<div className='flex w-full h-[380px] md:h-[420px] xl:h-[440px] justify-start px-2 md:px-0 my-5 overflow-x-scroll overscroll-contain'>
 			{trending.map((trend) => (
 				<div
-					className='flex flex-col justify-start items-center mr-2 bg-gray-200 cursor-pointer'
+					className='flex flex-col items-center justify-start mr-2 bg-gray-200 cursor-pointer'
 					key={trend.id}>
 					<NextLink
 						href={
-							trend.media_type === 'tv'
-								? `/show/${trend.id}`
-								: `/movie/${trend.id}`
+							trend.media_type === 'tv' ? `/show/${trend.id}` : `/movie/${trend.id}`
 						}>
 						{trend.poster_path ? (
 							<div className='relative w-[150px] h-[270px]'>
@@ -36,7 +34,7 @@ export default function TrendingResults({ trending, IMAGE_BASE_URL }) {
 											? 'absolute rounded-md p-1 bg-yellow-400 bottom-3 right-2'
 											: 'absolute rounded-md p-1 bg-green-400 bottom-3 right-2'
 									}>
-									{trend.vote_average * 10 + `%`}
+									{(trend.vote_average * 10).toFixed(2) + `%`}
 								</div>
 							</div>
 						) : (
@@ -53,12 +51,12 @@ export default function TrendingResults({ trending, IMAGE_BASE_URL }) {
 					</NextLink>
 
 					<p className='text-center'>{trend.media_type}</p>
-					<p className='text-center p-1'>
+					<p className='p-1 text-center'>
 						{trend.title ? trend.title.slice(0, 40) : trend.name.slice(0, 40)}
 						...
 					</p>
 				</div>
 			))}
 		</div>
-	)
+	);
 }

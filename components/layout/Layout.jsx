@@ -1,13 +1,21 @@
-import Head from 'next/head'
-import Header from '../mainHeader/Header'
+import Head from 'next/head';
+import Header from '../mainHeader/Header';
 
 export default function Layout({ title, description, children }) {
 	return (
 		<div>
 			<Head>
 				<title>{title ? `${title} - 'MovieDB` : 'MovieDB'}</title>
-				{description && <meta name='description' content={description} />}
-				<meta name='viewport' content='width=device-width, initial-scale=1' />
+				{description && (
+					<meta
+						name='description'
+						content={description}
+					/>
+				)}
+				<meta
+					name='viewport'
+					content='width=device-width, initial-scale=1'
+				/>
 				<meta charSet='utf-8' />
 				<meta
 					property='og:image'
@@ -15,10 +23,15 @@ export default function Layout({ title, description, children }) {
 					key='ogimage'
 				/>
 			</Head>
-			<main className='container flex flex-col mx-auto  min-h-screen w-full'>
+			<main className='container flex flex-col mx-auto min-h-[100dvh] h-full w-full'>
 				<Header />
 				{children}
+				<footer className='mt-auto'>
+					<p className='py-4 mt-auto text-center'>
+						Made by Safet Duranovic <b>&copy;{new Date().getFullYear()}</b>
+					</p>
+				</footer>
 			</main>
 		</div>
-	)
+	);
 }

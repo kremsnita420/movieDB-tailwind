@@ -1,19 +1,19 @@
-import { useState } from 'react'
-import Layout from '../../components/layout/Layout'
-import AvailableVideos from '../../components/show/AvailableVideos'
-import Header from '../../components/show/Header'
-import HeroImage from '../../components/show/HeroImage'
-import Description from '../../components/show/Description'
-import ReactPlayer from 'react-player'
-import Cast from '../../components/show/Cast'
-import Seasons from '../../components/show/Seasons'
+import { useState } from 'react';
+import Layout from '../../components/layout/Layout';
+import AvailableVideos from '../../components/show/AvailableVideos';
+import Header from '../../components/show/Header';
+import HeroImage from '../../components/show/HeroImage';
+import Description from '../../components/show/Description';
+import ReactPlayer from 'react-player';
+import Cast from '../../components/show/Cast';
+import Seasons from '../../components/show/Seasons';
 
 export default function ShowPagePage({ show, cast }) {
 	const [ytVideo, setYtVideo] = useState(
 		show.videos.results.length > 0 ? show.videos.results[0].key : 'b9434BoGkNQ'
-	)
-	console.log(show)
-	console.log(cast)
+	);
+	console.log(show);
+	console.log(cast);
 	return (
 		<>
 			<Layout>
@@ -38,35 +38,38 @@ export default function ShowPagePage({ show, cast }) {
 					</div>
 
 					{/* list of available videos */}
-					<AvailableVideos show={show} setYtVideo={setYtVideo} />
+					<AvailableVideos
+						show={show}
+						setYtVideo={setYtVideo}
+					/>
 				</div>
 				<Cast cast={cast} />
 				<Seasons show={show} />
 			</Layout>
 		</>
-	)
+	);
 }
 
 export async function getServerSideProps(context) {
-	const { showId } = context.query
+	const { showId } = context.query;
 
 	//fetch show
 	const response = await fetch(
-		`https://api.themoviedb.org/3/tv/${showId}?api_key=6f1ded32feffe837e07e801efb60a6c6&language=en-US&append_to_response=videos,people&include_image_language=en,null`
-	)
-	const showData = await response.json()
+		`https://api.themoviedb.org/3/tv/${showId}?api_key=${process.env.NEXT_PUBLIC_TMD_API}&language=en-US&append_to_response=videos,people&include_image_language=en,null`
+	);
+	const showData = await response.json();
 
 	//fetch cast
 	const castResponse = await fetch(
-		`https://api.themoviedb.org/3/tv/${showId}/credits?api_key=6f1ded32feffe837e07e801efb60a6c6&language=en-US&include_image_language=en,null`
-	)
+		`https://api.themoviedb.org/3/tv/${showId}/credits?api_key=${process.env.NEXT_PUBLIC_TMD_API}&language=en-US&include_image_language=en,null`
+	);
 
-	const castData = await castResponse.json()
+	const castData = await castResponse.json();
 
 	return {
 		props: {
 			show: showData,
 			cast: castData.cast,
 		},
-	}
+	};
 }

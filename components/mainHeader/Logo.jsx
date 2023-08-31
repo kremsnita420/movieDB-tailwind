@@ -1,18 +1,16 @@
-import NextLink from 'next/link'
+import NextLink from 'next/link';
 
 export default function Logo() {
 	return (
 		<NextLink href='/'>
 			<a>
-				<div
-					className='
-            h-12 w-44 flex justify-start items-center cursor-pointer bg-slate-300 p-1 rounded-lg border-2 border-black border-dashed'>
-					<span className='text-4xl inline-block font-serif'>Movies</span>
-					<span className='text-4xl uppercase font-black font-mono inline-block '>
+				<div className='flex items-center justify-center h-12 p-1 border-black rounded-lg cursor-pointer w-44 bg-slate-300'>
+					<span className='inline-block font-serif text-4xl'>Movies</span>
+					<span className='inline-block my-auto font-mono text-[2rem] font-black uppercase '>
 						DB
 					</span>
 				</div>
 			</a>
 		</NextLink>
-	)
+	);
 }
