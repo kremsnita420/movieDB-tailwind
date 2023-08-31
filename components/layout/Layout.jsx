@@ -25,7 +25,7 @@ export default function Layout({ title, description, children }) {
 				<link
 					rel='icon'
 					type='image/x-icon'
-					href='logo.svg'></link>
+					href='/logo.svg'></link>
 			</Head>
 			<Header />
 			<main className='container flex flex-col mx-auto min-h-[100dvh] h-full w-full'>

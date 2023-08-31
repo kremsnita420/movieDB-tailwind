@@ -40,6 +40,7 @@ export default function MoviePage({ movie, cast }) {
 				<AvailableVideos
 					movie={movie}
 					setYtVideo={setYtVideo}
+					ytVideo={ytVideo}
 				/>
 			</div>
 			<Cast cast={cast} />
