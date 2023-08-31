@@ -40,6 +40,7 @@ export default function ShowPagePage({ show, cast }) {
 					<AvailableVideos
 						show={show}
 						setYtVideo={setYtVideo}
+						ytVideo={ytVideo}
 					/>
 				</div>
 				<Cast cast={cast} />
