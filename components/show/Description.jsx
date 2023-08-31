@@ -1,13 +1,13 @@
-import NextImage from 'next/image'
+import NextImage from 'next/image';
 
 export default function MovieDescription({ show }) {
-	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w300'
-	const LOGO_BASE_URL = 'https://image.tmdb.org/t/p/w154'
+	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w300';
+	const LOGO_BASE_URL = 'https://image.tmdb.org/t/p/w154';
 	return (
-		<div className='flex flex-col w-full px-2 md:px-0'>
-			<p className='my-5 max-w-screen-md'>{show.overview}</p>
+		<div className='flex flex-col px-2 mb-10 text-center md:px-4 xl:px-0'>
+			<p className='max-w-screen-md my-5'>{show.overview}</p>
 
-			<div className='flex justify-start items-start w-full'>
+			<div className='flex items-start justify-start w-full'>
 				{/* rating score */}
 				<div className='flex flex-col mr-5'>
 					<div
@@ -40,5 +40,5 @@ export default function MovieDescription({ show }) {
 				</div>
 			</div>
 		</div>
-	)
+	);
 }

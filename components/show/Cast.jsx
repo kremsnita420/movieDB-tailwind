@@ -1,11 +1,11 @@
-import NextImage from 'next/image'
-import NextLink from 'next/link'
+import NextImage from 'next/image';
+import NextLink from 'next/link';
 
 export default function Cast({ cast }) {
 	return (
-		<div className='flex flex-col text-center mb-10 px-2 md:px-0'>
-			<h2 className='text-center my-5'>Top Cast</h2>
-			<div className='grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-5'>
+		<div className='flex flex-col px-2 mb-10 text-center md:px-4 xl:px-0'>
+			<h2 className='my-5 text-center'>Top Cast</h2>
+			<div className='grid grid-cols-4 gap-5 md:grid-cols-6 lg:grid-cols-8'>
 				{cast.slice(0, 20).map((singleCast) => (
 					<div key={singleCast.id}>
 						<NextLink href={`/people/${singleCast.id}`}>
@@ -31,7 +31,7 @@ export default function Cast({ cast }) {
 								) : (
 									<div className='w-full h-full'>
 										<NextImage
-											className='opacity-60 rounded-full'
+											className='rounded-full opacity-60'
 											src='/images/no_img.png'
 											width={100}
 											height={100}
@@ -53,5 +53,5 @@ export default function Cast({ cast }) {
 				))}
 			</div>
 		</div>
-	)
+	);
 }

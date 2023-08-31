@@ -3,7 +3,7 @@ import Header from '../mainHeader/Header';
 
 export default function Layout({ title, description, children }) {
 	return (
-		<div className='relative'>
+		<div className='relative w-full'>
 			<Head>
 				<title>{title ? `${title} - 'MovieDB` : 'MovieDB'}</title>
 				{description && (

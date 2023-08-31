@@ -26,7 +26,7 @@ export default function ShowPagePage({ show, cast }) {
 				</div>
 
 				<h2 className='text-center'>Videos</h2>
-				<div className='flex flex-col w-full px-2 md:px-0'>
+				<div className='flex flex-col w-full px-2 md:px-2 xl:px-4'>
 					{/* player */}
 					<div className='relative h-[35vh] md:h-[40vh] lg:h-[50vh] xl:h-[60vh] landscape:h-[75vh] my-5'>
 						<ReactPlayer

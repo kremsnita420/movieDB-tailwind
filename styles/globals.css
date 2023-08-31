@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+#__next {
+	width: 100%;
+	overflow-y: auto;
+}
+
 @layer components {
 	html {
 		@apply bg-purple-300;

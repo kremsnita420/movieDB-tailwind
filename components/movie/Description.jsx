@@ -1,20 +1,22 @@
-import NextImage from 'next/image'
+import NextImage from 'next/image';
 
 export default function MovieDescription({ movie }) {
-	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w300'
-	const LOGO_BASE_URL = 'https://image.tmdb.org/t/p/w154'
+	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w300';
+	const LOGO_BASE_URL = 'https://image.tmdb.org/t/p/w154';
 	return (
-		<div className='flex flex-col w-full px-2 md:px-0'>
-			<p className='my-5 max-w-screen-lg'>{movie.overview}</p>
-			<div className='flex justify-start items-center w-full py-2'>
+		<div className='flex flex-col px-2 mb-10 text-center md:px-4 xl:px-0'>
+			<p className='max-w-screen-lg my-5'>{movie.overview}</p>
+			<div className='flex flex-wrap items-center justify-start w-full py-2 mb-4'>
 				{movie.genres.map((genre) => (
-					<p className='border-2 rounded-lg mr-1 px-1' key={genre.id}>
+					<p
+						className='px-1 my-1 mr-1 border-2 rounded-lg'
+						key={genre.id}>
 						{genre.name}
 					</p>
 				))}
 			</div>
 
-			<div className='flex justify-start items-start w-full'>
+			<div className='flex items-start justify-start w-full'>
 				{/* rating score */}
 				<div className='flex flex-col mr-5'>
 					<div
@@ -47,5 +49,5 @@ export default function MovieDescription({ movie }) {
 				</div>
 			</div>
 		</div>
-	)
+	);
 }
