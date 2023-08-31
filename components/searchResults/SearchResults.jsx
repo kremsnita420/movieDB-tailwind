@@ -2,15 +2,16 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 
 export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
+	console.log(movies);
 	return (
 		<div className='px-2'>
 			{query.length > 3 ? (
 				<h2 className='w-full my-5 text-3xl text-center'>
 					Results for{' '}
-					<span className='text-bold'>
-						{'>'}
+					<span className='capitalize text-bold'>
+						{'"'}
 						{query}
-						{'<'}
+						{'"'}
 					</span>
 				</h2>
 			) : (
@@ -19,7 +20,7 @@ export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 				</h2>
 			)}
 
-			<div className='grid grid-cols-3 gap-2 mt-5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7'>
+			<div className='grid grid-cols-2 gap-3 mt-5 sm:grid-cols-3 md:gap-4 lg:grid-cols-5 xl:grid-cols-6'>
 				{query.length > 3 ? (
 					movies?.map((movie) => (
 						<div
@@ -34,7 +35,7 @@ export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 										: `/people/${movie.id}`
 								}>
 								<a>
-									<div className='relative cursor-pointer w-[150] h-[230]'>
+									<div className='relative cursor-pointer w-full h-[250px]'>
 										<Image
 											src={
 												movie.poster_path
@@ -45,13 +46,12 @@ export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
 													? IMAGE_BASE_URL + movie.profile_path
 													: '/images/no_img.png'
 											}
-											objectFit='fill'
-											width={500}
-											height={700}
+											objectFit='cover'
+											layout='fill'
 											placeholder='blur'
 											blurDataURL='https://images.unsplash.com/photo-1613387275674-cb92af1c29d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80'
 											alt='profile photo'
-											priority='high'
+											loading='lazy'
 											rel='preload'
 											as='image'
 										/>

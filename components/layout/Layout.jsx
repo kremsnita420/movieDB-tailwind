@@ -3,7 +3,7 @@ import Header from '../mainHeader/Header';
 
 export default function Layout({ title, description, children }) {
 	return (
-		<div>
+		<div className='relative'>
 			<Head>
 				<title>{title ? `${title} - 'MovieDB` : 'MovieDB'}</title>
 				{description && (
@@ -23,8 +23,8 @@ export default function Layout({ title, description, children }) {
 					key='ogimage'
 				/>
 			</Head>
+			<Header />
 			<main className='container flex flex-col mx-auto min-h-[100dvh] h-full w-full'>
-				<Header />
 				{children}
 				<footer className='mt-auto'>
 					<p className='py-4 mt-auto text-center'>

@@ -5,6 +5,12 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'quick': ['Quicksand', 'sans - serif'],
+      'bungee': ['Bungee Shade', 'monospace']
+    }
   },
-  plugins: [],
-}
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
+};
