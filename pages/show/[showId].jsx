@@ -12,8 +12,7 @@ export default function ShowPagePage({ show, cast }) {
 	const [ytVideo, setYtVideo] = useState(
 		show.videos.results.length > 0 ? show.videos.results[0].key : 'b9434BoGkNQ'
 	);
-	console.log(show);
-	console.log(cast);
+
 	return (
 		<>
 			<Layout>
