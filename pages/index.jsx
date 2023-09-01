@@ -34,7 +34,7 @@ export default function Home({ trending }) {
 		if (!query) {
 			return;
 		}
-		if (query.length < 0 && query.length > 2) {
+		if (query.length > 0 && query.length < 2) {
 			setInitialPage(1);
 		}
 		setIsLoading(true);
@@ -127,6 +127,7 @@ export default function Home({ trending }) {
 						initialPage={initialPage}
 						totalPages={totalPages}
 						setInitialPage={setInitialPage}
+						isLoading={isLoading}
 					/>
 				) : (
 					<div></div>

@@ -2,7 +2,6 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 
 export default function SearchResults({ movies, IMAGE_BASE_URL, query }) {
-	console.log(movies);
 	return (
 		<div className='px-2'>
 			{query.length > 3 ? (

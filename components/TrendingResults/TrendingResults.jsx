@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 
 export default function TrendingResults({ trending, IMAGE_BASE_URL }) {
 	return (
-		<div className='flex w-full h-[380px] md:h-[420px] xl:h-[440px] justify-start gap-2  my-5 overflow-x-auto overscroll-contain'>
+		<div className='flex w-full h-[400px] md:h-[430px] xl:h-[460px] justify-start gap-2  my-5 overflow-x-auto overscroll-contain'>
 			{trending.map((trend) => (
 				<div
 					className='flex flex-col items-center justify-start mb-2 mr-2 bg-gray-200 cursor-pointer'
@@ -17,8 +17,9 @@ export default function TrendingResults({ trending, IMAGE_BASE_URL }) {
 								<Image
 									src={IMAGE_BASE_URL + trend.poster_path}
 									layout='responsive'
-									width={90}
-									height={150}
+									fill='true'
+									width={80}
+									height={120}
 									placeholder='blur'
 									blurDataURL='https://images.unsplash.com/photo-1613387275674-cb92af1c29d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80'
 									alt='profile photo'
