@@ -5,7 +5,7 @@ export default function MovieDescription({ show }) {
 	const LOGO_BASE_URL = 'https://image.tmdb.org/t/p/w154';
 	return (
 		<div className='flex flex-col px-2 mb-10 text-center md:px-4 xl:px-0'>
-			<p className='max-w-screen-md my-5'>{show.overview}</p>
+			<p className='max-w-screen-lg my-5'>{show.overview}</p>
 
 			<div className='flex items-start justify-start w-full'>
 				{/* rating score */}

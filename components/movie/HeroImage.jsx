@@ -24,7 +24,7 @@ export default function HeroImage({ movie }) {
 					className='opacity-60'
 					src='/images/no_img.png'
 					width={1500}
-					height={900}
+					height={700}
 					layout='responsive'
 					objectFit='cover'
 					placeholder='blur'

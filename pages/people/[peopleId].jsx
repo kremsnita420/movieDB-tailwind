@@ -18,7 +18,7 @@ export default function ActorPage({ moviesAndShows }) {
 					alt=' photo'
 				/>
 			</div>
-			<div className='px-2 xl:px-4'>
+			<div>
 				<h1 className='my-4 text-2xl lg:text-4xl'>
 					{moviesAndShows.title ? moviesAndShows.title : moviesAndShows.name}
 				</h1>

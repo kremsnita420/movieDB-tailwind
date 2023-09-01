@@ -14,39 +14,37 @@ export default function ShowPagePage({ show, cast }) {
 	);
 
 	return (
-		<>
-			<Layout>
-				<div className='relative flex flex-col items-center justify-center w-full '>
-					<HeroImage show={show} />
-					{/* movie header */}
-					<Header show={show} />
-					{/* movie description */}
-					<Description show={show} />
-				</div>
+		<Layout>
+			<div className='relative flex flex-col items-center justify-center w-full '>
+				<HeroImage show={show} />
+				{/* show header */}
+				<Header show={show} />
+				{/* show description */}
 
-				<h2 className='text-center'>Videos</h2>
-				<div className='flex flex-col w-full px-2 md:px-2 xl:px-4'>
-					{/* player */}
-					<div className='relative h-[35vh] md:h-[40vh] lg:h-[50vh] xl:h-[60vh] landscape:h-[75vh] my-5'>
-						<ReactPlayer
-							width='100%'
-							height='100%'
-							className='absolute top-0 left-0'
-							url={`https://www.youtube.com/watch?v=${ytVideo}`}
-						/>
-					</div>
+				<Description show={show} />
+			</div>
 
-					{/* list of available videos */}
-					<AvailableVideos
-						show={show}
-						setYtVideo={setYtVideo}
-						ytVideo={ytVideo}
+			<div className='flex flex-col w-full mt-4 md:mt-10'>
+				{/* player */}
+				<div className='relative h-[35vh] md:h-[40vh] lg:h-[50vh] xl:h-[50vh] landscape:-[85vw] my-5'>
+					<ReactPlayer
+						controls={true}
+						width='100%'
+						height='100%'
+						className='absolute top-0 left-0'
+						url={`https://www.youtube.com/watch?v=${ytVideo}`}
 					/>
 				</div>
-				<Cast cast={cast} />
-				<Seasons show={show} />
-			</Layout>
-		</>
+
+				{/* list of available videos */}
+				<AvailableVideos
+					show={show}
+					setYtVideo={setYtVideo}
+					ytVideo={ytVideo}
+				/>
+			</div>
+			<Cast cast={cast} />
+		</Layout>
 	);
 }
 

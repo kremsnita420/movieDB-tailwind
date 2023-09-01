@@ -24,7 +24,7 @@ export default function MoviePage({ movie, cast }) {
 				<Description movie={movie} />
 			</div>
 
-			<div className='flex flex-col w-full px-2 mt-4 md:mt-10 md:px-2 xl:px-4'>
+			<div className='flex flex-col w-full mt-4 md:mt-10xl'>
 				{/* player */}
 				<div className='relative h-[35vh] md:h-[40vh] lg:h-[50vh] xl:h-[50vh] landscape:-[85vw] my-5'>
 					<ReactPlayer

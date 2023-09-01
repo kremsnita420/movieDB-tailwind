@@ -5,7 +5,7 @@ export default function Cast({ cast }) {
 	return (
 		<div className='flex flex-col px-2 mb-10 text-center md:px-4 xl:px-0'>
 			<h2 className='my-5 text-center'>Top Cast</h2>
-			<div className='grid grid-cols-4 gap-5 md:grid-cols-6 lg:grid-cols-8'>
+			<div className='grid grid-cols-3 gap-5 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-9'>
 				{cast.slice(0, 20).map((singleCast) => (
 					<div key={singleCast.id}>
 						<NextLink href={`/people/${singleCast.id}`}>

@@ -3,7 +3,7 @@ import NextImage from 'next/image';
 export default function Seasons({ show }) {
 	const HERO_BASE_URL = 'https://image.tmdb.org/t/p/w300';
 	return (
-		<div className='px-2 md:px-2 xl:px-4'>
+		<div>
 			<h2 className='py-5 text-center'>Seasons</h2>
 
 			<div className='grid grid-cols-3 gap-5 md:grid-cols-5 lg:grid-cols-8'>

@@ -28,7 +28,7 @@ export default function Layout({ title, description, children }) {
 					href='/logo.svg'></link>
 			</Head>
 			<Header />
-			<main className='container flex flex-col mx-auto min-h-[100dvh] h-full w-full'>
+			<main className='px-2 md-px-4 xl:px-2 max-w-7xl flex flex-col mx-auto min-h-[100dvh] h-full w-full'>
 				{children}
 				<footer className='mt-auto'>
 					<p className='py-4 mt-auto text-center'>
