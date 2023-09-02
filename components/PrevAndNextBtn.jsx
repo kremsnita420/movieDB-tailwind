@@ -5,7 +5,6 @@ export default function PrevAndNextBtn({
 	initialPage,
 	totalPages,
 	setInitialPage,
-	isLoading,
 }) {
 	return (
 		<>
@@ -21,16 +20,14 @@ export default function PrevAndNextBtn({
 						) : (
 							<button
 								disabled
-								className='px-2 py-1 mr-5 bg-red-400 opacity-10'
-								onClick={() => setInitialPage(1)}>
+								className='px-2 py-1 mr-5 bg-red-400 opacity-10'>
 								first
 							</button>
 						)}
 						{initialPage === 1 ? (
 							<button
 								disabled
-								className='px-2 py-1 mr-5 bg-red-400 opacity-10'
-								onClick={() => setInitialPage(initialPage - 1)}>
+								className='px-2 py-1 mr-5 bg-red-400 opacity-10'>
 								{'<<'}
 							</button>
 						) : (
@@ -48,22 +45,20 @@ export default function PrevAndNextBtn({
 						{initialPage === totalPages ? (
 							<button
 								disabled
-								className='px-2 py-1 ml-5 bg-red-400 opacity-10'
-								onClick={() => setInitialPage(initialPage + 1)}>
+								className='px-2 py-1 ml-5 bg-red-400 opacity-10'>
 								next
 							</button>
 						) : (
 							<button
 								className='px-2 py-1 ml-5 bg-red-400'
-								onClick={setInitialPage(initialPage + 1)}>
+								onClick={() => setInitialPage(initialPage + 1)}>
 								{'>>'}
 							</button>
 						)}
 						{initialPage === totalPages ? (
 							<button
 								disabled
-								className='px-2 py-1 ml-5 bg-red-400 opacity-10'
-								onClick={() => setInitialPage(totalPages)}>
+								className='px-2 py-1 ml-5 bg-red-400 opacity-10'>
 								last
 							</button>
 						) : (

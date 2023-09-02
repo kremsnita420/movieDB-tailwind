@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 export default function ActorPage({ moviesAndShows }) {
-	console.log(moviesAndShows);
 	const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w300/';
 	// const router = useRouter();
 	const [showedItems, setShowedItems] = useState(12);
@@ -33,8 +32,6 @@ export default function ActorPage({ moviesAndShows }) {
 		} else {
 			sessionStorage.setItem(storageName, JSON.stringify(showedItems));
 		}
-
-		console.log();
 	}, []);
 
 	return (
